@@ -13,19 +13,13 @@ body {
     display: flex; justify-content: center; align-items: flex-start;
     color: #fff; user-select: none;
 }
-.menu-container {
-    width: 100%; max-width: 420px;
-}
-
-/* ===== ICON TRÊN ĐẦU ===== */
+.menu-container { width: 100%; max-width: 420px; }
 .top-icon {
     width: 110px; height: 110px;
     margin: 0 auto 20px;
     display: block;
     filter: drop-shadow(0 0 20px rgba(255, 30, 30, 0.8));
 }
-
-/* ===== MENU BÊN DƯỚI ===== */
 .menu-box {
     background: rgba(10, 5, 5, 0.9);
     border-radius: 24px;
@@ -93,6 +87,67 @@ input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0 0 25px rgba(255, 50, 50, 0.5);
 }
 .btn-run:active { transform: scale(0.98); }
+.modal-overlay {
+    display: none;
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    justify-content: center; align-items: center;
+    padding: 20px;
+}
+.modal-overlay.show { display: flex; }
+.modal-box {
+    background: #0f0505;
+    border-radius: 20px;
+    padding: 20px;
+    width: 100%; max-width: 400px;
+    border: 1px solid rgba(255, 50, 50, 0.4);
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.3);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+.modal-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: #ff3333;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    text-shadow: 0 0 15px rgba(255, 50, 50, 0.8);
+}
+.modal-sub {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 18px;
+}
+.device-btn {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 50, 50, 0.2);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+}
+.device-btn:active { transform: scale(0.98); background: rgba(255, 50, 50, 0.15); }
+.modal-close {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+    background: rgba(255, 50, 50, 0.2);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
 .progress-box {
     display: none; margin-top: 14px;
     background: rgba(0,0,0,0.6); border-radius: 14px; padding: 16px;
@@ -107,7 +162,6 @@ input[type="range"]::-webkit-slider-thumb {
 <body>
 <div class="menu-container">
 
-    <!-- ICON TRÊN ĐẦU -->
     <svg class="top-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <radialGradient id="g1" cx="50%" cy="50%">
@@ -124,7 +178,6 @@ input[type="range"]::-webkit-slider-thumb {
         <circle cx="50" cy="50" r="4" fill="#ff3333"/>
     </svg>
 
-    <!-- MENU BÊN DƯỚI -->
     <div class="menu-box">
         <div class="menu-title">AIMLOCK</div>
 
@@ -149,8 +202,8 @@ input[type="range"]::-webkit-slider-thumb {
         </div>
 
         <div class="menu-item">
-            <div class="info"><span class="name">💉 DPI Config</span><span class="desc">Cấu hình DPI</span></div>
-            <div class="switch" id="sw-dpi" onclick="toggle('dpi')"><div class="knob"></div></div>
+            <div class="info"><span class="name">💉 DPI Config</span><span class="desc">Tải hồ sơ cấu hình</span></div>
+            <div class="switch" id="sw-dpi" onclick="toggleDPI()"><div class="knob"></div></div>
         </div>
 
         <div class="slider-item">
@@ -168,21 +221,168 @@ input[type="range"]::-webkit-slider-thumb {
 
 </div>
 
+<!-- MODAL CHỌN MÁY -->
+<div class="modal-overlay" id="deviceModal">
+    <div class="modal-box">
+        <div class="modal-title">CHỌN DÒNG MÁY</div>
+        <div class="modal-sub">Chọn máy để tải hồ sơ cấu hình</div>
+
+        <button class="device-btn" onclick="downloadProfile('iPhone 6/6 Plus','iPhone6')">📱 iPhone 6 / 6 Plus</button>
+        <button class="device-btn" onclick="downloadProfile('iPhone 6s/6s Plus','iPhone6s')">📱 iPhone 6s / 6s Plus</button>
+        <button class="device-btn" onclick="downloadProfile('iPhone 7/7 Plus','iPhone7')">📱 iPhone 7 / 7 Plus</button>
+        <button class="device-btn" onclick="downloadProfile('iPhone 8/8 Plus','iPhone8')">📱 iPhone 8 / 8 Plus</button>
+        <button class="device-btn" onclick="downloadProfile('iPhone X/XS/XR','iPhoneX')">📱 iPhone X / XS / XR</button>
+        <button class="device-btn" onclick="downloadProfile('iPhone 11 Series','iPhone11')">📱 iPhone 11 / 11 Pro / Pro Max</button>
+        <button class="device-btn" onclick="downloadProfile('iPhone 12 Series','iPhone12')">📱 iPhone 12 Series</button>
+        <button class="device-btn" onclick="downloadProfile('iPhone 13 Series','iPhone13')">📱 iPhone 13 Series</button>
+        <button class="device-btn" onclick="downloadProfile('iPhone 14 Series','iPhone14')">📱 iPhone 14 Series</button>
+        <button class="device-btn" onclick="downloadProfile('iPhone 15 Series','iPhone15')">📱 iPhone 15 Series</button>
+        <button class="device-btn" onclick="downloadProfile('iPhone 16 Series','iPhone16')">📱 iPhone 16 Series</button>
+        <button class="device-btn" onclick="downloadProfile('iPhone 17 Series','iPhone17')">📱 iPhone 17 Series</button>
+
+        <button class="modal-close" onclick="closeModal()">Đóng</button>
+    </div>
+</div>
+
 <script>
-const config = { aimco: false, nhetam: false, bamda: false, headlock: false, dpi: false, sens: 85 };
+function getDefaultConfig() {
+    return { aimco: false, nhetam: false, bamda: false, headlock: false, dpi: false, sens: 85 };
+}
+
+let config = getDefaultConfig();
 
 function toggle(key) {
     config[key] = !config[key];
     const sw = document.getElementById('sw-' + key);
     if (config[key]) sw.classList.add('active');
     else sw.classList.remove('active');
-    localStorage.setItem('aimlock_cfg', JSON.stringify(config));
+}
+
+function toggleDPI() {
+    config.dpi = !config.dpi;
+    const sw = document.getElementById('sw-dpi');
+    if (config.dpi) {
+        sw.classList.add('active');
+        openModal();
+    } else {
+        sw.classList.remove('active');
+    }
+}
+
+function openModal() {
+    document.getElementById('deviceModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('deviceModal').classList.remove('show');
+    config.dpi = false;
+    document.getElementById('sw-dpi').classList.remove('active');
+}
+
+// ===== TẠO FILE .mobileconfig NGAY TRONG TRANG =====
+function generateMobileConfig(deviceName, deviceID) {
+    const uuid = 'AIMLOCK-' + deviceID.toUpperCase() + '-' + Date.now();
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+    <key>PayloadIdentifier</key>
+    <string>com.aimlock.${deviceID}</string>
+    <key>PayloadUUID</key>
+    <string>${uuid}</string>
+    <key>PayloadDisplayName</key>
+    <string>🔥 AIMLOCK - ${deviceName}</string>
+    <key>PayloadDescription</key>
+    <string>Tối ưu cảm ứng cho ${deviceName}</string>
+    <key>PayloadOrganization</key>
+    <string>AIMLOCK PRO</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadType</key>
+            <string>com.apple.Accessibility</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>PayloadIdentifier</key>
+            <string>com.aimlock.${deviceID}.touch</string>
+            <key>PayloadUUID</key>
+            <string>${uuid}-TOUCH</string>
+            <key>TouchAccommodations</key>
+            <dict>
+                <key>Enabled</key>
+                <true/>
+                <key>HoldDuration</key>
+                <real>0.0</real>
+                <key>IgnoreRepeat</key>
+                <true/>
+                <key>TapAssistance</key>
+                <string>FollowFinger</string>
+                <key>GlideSpeed</key>
+                <string>InstantLock</string>
+                <key>PointerPrecision</key>
+                <string>Maximum</string>
+                <key>TapTimeout</key>
+                <real>0.0</real>
+            </dict>
+            <key>ReduceMotion</key>
+            <true/>
+            <key>ReduceTransparency</key>
+            <true/>
+            <key>IncreaseContrast</key>
+            <true/>
+            <key>SystemHaptics</key>
+            <false/>
+            <key>Vibration</key>
+            <dict>
+                <key>Enabled</key>
+                <false/>
+            </dict>
+        </dict>
+        <dict>
+            <key>PayloadType</key>
+            <string>com.apple.systemconfiguration</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>PayloadIdentifier</key>
+            <string>com.aimlock.${deviceID}.network</string>
+            <key>PayloadUUID</key>
+            <string>${uuid}-NET</string>
+            <key>NetworkLatencyReducer</key>
+            <true/>
+            <key>TCPOptimization</key>
+            <true/>
+            <key>QoSCapability</key>
+            <string>HighPriority</string>
+        </dict>
+    </array>
+</dict>
+</plist>`;
+    return xml;
+}
+
+function downloadProfile(deviceName, deviceID) {
+    const xml = generateMobileConfig(deviceName, deviceID);
+    const blob = new Blob([xml], { type: 'application/x-apple-aspen-config' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `AIMLOCK_${deviceID}.mobileconfig`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    closeModal();
 }
 
 function updateSens(val) {
     config.sens = parseInt(val);
     document.getElementById('sensVal').textContent = val;
-    localStorage.setItem('aimlock_cfg', JSON.stringify(config));
 }
 
 function runGame() {
@@ -208,19 +408,24 @@ function runGame() {
     }, 25);
 }
 
-const saved = localStorage.getItem('aimlock_cfg');
-if (saved) {
-    try {
-        const p = JSON.parse(saved);
-        Object.assign(config, p);
+window.addEventListener('beforeunload', () => { config = getDefaultConfig(); });
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        config = getDefaultConfig();
         for (const key of ['aimco', 'nhetam', 'bamda', 'headlock', 'dpi']) {
             const sw = document.getElementById('sw-' + key);
-            if (config[key]) sw.classList.add('active');
+            if (sw) sw.classList.remove('active');
         }
-        document.getElementById('sensSlider').value = config.sens;
-        document.getElementById('sensVal').textContent = config.sens;
-    } catch(e) {}
-}
+        document.getElementById('sensSlider').value = 85;
+        document.getElementById('sensVal').textContent = '85';
+    }
+});
+
+(function init() {
+    config = getDefaultConfig();
+    document.getElementById('sensSlider').value = 85;
+    document.getElementById('sensVal').textContent = '85';
+})();
 </script>
 </body>
 </html>
