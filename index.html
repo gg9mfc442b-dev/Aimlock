@@ -3,436 +3,417 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>AIMLOCK</title>
+<title>🎯 MENU ĐỘ NHẠY FF</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 body {
     font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
     background: radial-gradient(ellipse at top, #1a0a0a 0%, #000000 70%);
-    min-height: 100vh; padding: 20px 16px;
-    display: flex; justify-content: center; align-items: flex-start;
+    min-height: 100vh; padding: 16px;
     color: #fff; user-select: none;
 }
-.menu-container { width: 100%; max-width: 420px; }
-.top-icon {
-    width: 110px; height: 110px;
-    margin: 0 auto 20px;
-    display: block;
-    filter: drop-shadow(0 0 20px rgba(255, 30, 30, 0.8));
+.container { max-width: 420px; margin: 0 auto; }
+
+/* HEADER */
+.header { text-align: center; margin-bottom: 16px; }
+.header h1 {
+    font-size: 24px; font-weight: 800;
+    background: linear-gradient(90deg, #ff3333, #ff8800);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
 }
-.menu-box {
-    background: rgba(10, 5, 5, 0.9);
-    border-radius: 24px;
-    padding: 20px 16px 24px;
-    border: 1px solid rgba(255, 50, 50, 0.25);
-    box-shadow: 0 0 40px rgba(255, 0, 0, 0.2), inset 0 0 30px rgba(255, 0, 0, 0.05);
+.header .sub { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 2px; margin-top: 4px; }
+
+/* TAB CHỌN HỆ ĐIỀU HÀNH */
+.tab-bar {
+    display: flex; gap: 8px; margin-bottom: 16px;
+    background: rgba(0,0,0,0.4); border-radius: 14px; padding: 6px;
 }
-.menu-title {
-    text-align: center;
-    font-size: 20px;
-    font-weight: 800;
-    color: #ff3333;
-    letter-spacing: 3px;
-    margin-bottom: 18px;
-    text-shadow: 0 0 15px rgba(255, 50, 50, 0.8);
+.tab-btn {
+    flex: 1; padding: 14px; border: none; border-radius: 10px;
+    font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.5);
+    background: transparent; cursor: pointer; transition: all 0.3s ease;
 }
-.menu-item {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 14px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    display: flex; justify-content: space-between; align-items: center;
-    border: 1px solid rgba(255, 50, 50, 0.15);
+.tab-btn.active {
+    background: linear-gradient(90deg, #ff2222, #ff6600);
+    color: #fff; box-shadow: 0 0 20px rgba(255,50,50,0.5);
 }
-.menu-item .info { display: flex; flex-direction: column; gap: 2px; }
-.menu-item .info .name { font-size: 15px; font-weight: 600; color: #fff; }
-.menu-item .info .desc { font-size: 11px; color: rgba(255, 255, 255, 0.3); }
-.switch {
-    width: 52px; height: 28px; background: rgba(255, 255, 255, 0.1);
-    border-radius: 14px; position: relative; cursor: pointer;
-    transition: background 0.3s ease; flex-shrink: 0;
+
+/* PANEL */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* INFO BOX */
+.info-box {
+    background: rgba(255,255,255,0.05); border-radius: 14px;
+    padding: 14px 16px; margin-bottom: 14px;
+    border-left: 3px solid #ff3333;
 }
-.switch.active { background: linear-gradient(90deg, #ff2222, #ff6600); box-shadow: 0 0 15px rgba(255, 50, 50, 0.6); }
-.switch .knob {
-    width: 22px; height: 22px; background: #fff; border-radius: 50%;
-    position: absolute; top: 3px; left: 3px; transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-.switch.active .knob { left: 27px; }
+.info-box .title { font-size: 13px; font-weight: 700; color: #ff5555; margin-bottom: 4px; }
+.info-box .desc { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+/* SLIDER */
 .slider-item {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 14px;
-    padding: 16px;
-    margin-bottom: 10px;
-    border: 1px solid rgba(255, 50, 50, 0.15);
+    background: rgba(255,255,255,0.05); border-radius: 14px;
+    padding: 16px; margin-bottom: 10px;
+    border: 1px solid rgba(255,50,50,0.2);
 }
-.slider-item .info { display: flex; justify-content: space-between; margin-bottom: 10px; }
-.slider-item .info .name { font-size: 15px; font-weight: 600; color: #fff; }
-.slider-item .info .value { font-size: 16px; font-weight: 800; color: #ff3333; }
+.slider-item .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.slider-item .name { font-size: 15px; font-weight: 700; color: #fff; }
+.slider-item .value {
+    font-size: 18px; font-weight: 800; color: #ff8844;
+    background: rgba(0,0,0,0.4); padding: 4px 14px; border-radius: 8px;
+    min-width: 70px; text-align: center;
+}
 input[type="range"] {
-    -webkit-appearance: none; appearance: none; width: 100%; height: 5px;
-    border-radius: 3px; background: rgba(255, 255, 255, 0.15); outline: none;
+    -webkit-appearance: none; appearance: none; width: 100%; height: 6px;
+    border-radius: 3px; background: rgba(255,255,255,0.15); outline: none;
 }
 input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; appearance: none; width: 22px; height: 22px;
-    border-radius: 50%; background: #ff3333;
-    cursor: pointer; box-shadow: 0 0 15px rgba(255, 50, 50, 0.8);
+    -webkit-appearance: none; appearance: none; width: 24px; height: 24px;
+    border-radius: 50%; background: linear-gradient(135deg, #ff3333, #ff8800);
+    cursor: pointer; box-shadow: 0 0 20px rgba(255,50,50,0.6);
 }
-.btn-run {
+.slider-item .range-info {
+    display: flex; justify-content: space-between; margin-top: 6px;
+    font-size: 10px; color: rgba(255,255,255,0.3);
+}
+
+/* NÚT ĐÁNH GIÁ */
+.evaluate-box {
+    background: rgba(255,255,255,0.05); border-radius: 14px;
+    padding: 16px; margin-top: 14px;
+    border: 1px solid rgba(255,50,50,0.2);
+}
+.evaluate-box .title { font-size: 14px; font-weight: 700; color: #ff5555; margin-bottom: 12px; text-align: center; }
+.eval-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.eval-btn {
+    padding: 12px 8px; border: none; border-radius: 10px;
+    font-size: 12px; font-weight: 700; color: #fff; cursor: pointer;
+    background: rgba(255,50,50,0.2); border: 1px solid rgba(255,50,50,0.3);
+    transition: all 0.2s ease;
+}
+.eval-btn:active { transform: scale(0.96); }
+.eval-btn.good { background: rgba(68,255,136,0.2); border-color: rgba(68,255,136,0.4); }
+.eval-btn.bad { background: rgba(255,50,50,0.3); border-color: rgba(255,50,50,0.5); }
+
+/* KẾT QUẢ ĐÁNH GIÁ */
+.result-box {
+    display: none; margin-top: 14px;
+    background: rgba(0,0,0,0.5); border-radius: 14px;
+    padding: 16px; border: 1px solid rgba(255,50,50,0.3);
+}
+.result-box.show { display: block; }
+.result-box .result-title { font-size: 14px; font-weight: 700; color: #ff8844; margin-bottom: 8px; }
+.result-box .result-text { font-size: 13px; color: #fff; line-height: 1.6; margin-bottom: 12px; }
+.result-box .result-actions { display: flex; gap: 8px; }
+.btn-reset, .btn-ok {
+    flex: 1; padding: 12px; border: none; border-radius: 10px;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.btn-reset {
+    background: rgba(255,50,50,0.2); color: #ff5555;
+    border: 1px solid rgba(255,50,50,0.4);
+}
+.btn-ok {
+    background: linear-gradient(90deg, #ff2222, #ff6600); color: #fff;
+}
+
+/* NÚT CHÍNH */
+.btn-main {
     width: 100%; margin-top: 16px; padding: 18px;
     border: none; border-radius: 16px;
     font-size: 17px; font-weight: 800; color: #fff;
     background: linear-gradient(90deg, #ff2222, #ff6600);
     letter-spacing: 2px; cursor: pointer;
-    box-shadow: 0 0 25px rgba(255, 50, 50, 0.5);
+    box-shadow: 0 0 25px rgba(255,50,50,0.5);
 }
-.btn-run:active { transform: scale(0.98); }
-.modal-overlay {
-    display: none;
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 9999;
-    justify-content: center; align-items: center;
-    padding: 20px;
+.btn-main:active { transform: scale(0.98); }
+
+.footer {
+    text-align: center; font-size: 10px;
+    color: rgba(255,255,255,0.2); letter-spacing: 2px;
+    margin-top: 20px;
 }
-.modal-overlay.show { display: flex; }
-.modal-box {
-    background: #0f0505;
-    border-radius: 20px;
-    padding: 20px;
-    width: 100%; max-width: 400px;
-    border: 1px solid rgba(255, 50, 50, 0.4);
-    box-shadow: 0 0 40px rgba(255, 0, 0, 0.3);
-    max-height: 80vh;
-    overflow-y: auto;
-}
-.modal-title {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 800;
-    color: #ff3333;
-    letter-spacing: 2px;
-    margin-bottom: 6px;
-    text-shadow: 0 0 15px rgba(255, 50, 50, 0.8);
-}
-.modal-sub {
-    text-align: center;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.4);
-    margin-bottom: 18px;
-}
-.device-btn {
-    width: 100%;
-    padding: 12px 16px;
-    margin-bottom: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 50, 50, 0.2);
-    border-radius: 12px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: left;
-    cursor: pointer;
-}
-.device-btn:active { transform: scale(0.98); background: rgba(255, 50, 50, 0.15); }
-.modal-close {
-    width: 100%;
-    padding: 14px;
-    margin-top: 8px;
-    background: rgba(255, 50, 50, 0.2);
-    border: none;
-    border-radius: 12px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-}
-.progress-box {
-    display: none; margin-top: 14px;
-    background: rgba(0,0,0,0.6); border-radius: 14px; padding: 16px;
-    border: 1px solid rgba(255, 50, 50, 0.3);
-}
-.progress-box.show { display: block; }
-.progress-text { font-size: 14px; color: #ff5555; text-align: center; margin-bottom: 10px; font-weight: 700; }
-.progress-bar { width: 100%; height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
-.progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff2222, #ff6600); transition: width 0.05s linear; box-shadow: 0 0 10px rgba(255, 50, 50, 0.8); }
 </style>
 </head>
 <body>
-<div class="menu-container">
+<div class="container">
 
-    <svg class="top-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <radialGradient id="g1" cx="50%" cy="50%">
-                <stop offset="0%" stop-color="#ff3333"/>
-                <stop offset="60%" stop-color="#8b0000"/>
-                <stop offset="100%" stop-color="#1a0000"/>
-            </radialGradient>
-        </defs>
-        <polygon points="50,5 95,30 95,70 50,95 5,70 5,30" fill="url(#g1)" stroke="#ff3333" stroke-width="2"/>
-        <polygon points="50,20 80,38 80,62 50,80 20,62 20,38" fill="none" stroke="#ff6666" stroke-width="1.5"/>
-        <circle cx="50" cy="50" r="12" fill="none" stroke="#ff3333" stroke-width="2"/>
-        <line x1="50" y1="35" x2="50" y2="65" stroke="#ff3333" stroke-width="2"/>
-        <line x1="35" y1="50" x2="65" y2="50" stroke="#ff3333" stroke-width="2"/>
-        <circle cx="50" cy="50" r="4" fill="#ff3333"/>
-    </svg>
+    <div class="header">
+        <h1>🎯 MENU ĐỘ NHẠY FF</h1>
+        <div class="sub">iOS & ANDROID · TÙY CHỈNH ĐỘ NHẠY</div>
+    </div>
 
-    <div class="menu-box">
-        <div class="menu-title">AIMLOCK</div>
+    <!-- TAB -->
+    <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('ios')">🍎 iOS</button>
+        <button class="tab-btn" onclick="switchTab('adr')">🤖 Android</button>
+    </div>
 
-        <div class="menu-item">
-            <div class="info"><span class="name">🎯 Aim Cổ</span><span class="desc">Bám cổ đối thủ</span></div>
-            <div class="switch" id="sw-aimco" onclick="toggle('aimco')"><div class="knob"></div></div>
-        </div>
-
-        <div class="menu-item">
-            <div class="info"><span class="name">💧 Nhẹ Tâm</span><span class="desc">Vuốt mượt</span></div>
-            <div class="switch" id="sw-nhetam" onclick="toggle('nhetam')"><div class="knob"></div></div>
-        </div>
-
-        <div class="menu-item">
-            <div class="info"><span class="name">🎯 Bám Đầu</span><span class="desc">Bám mục tiêu</span></div>
-            <div class="switch" id="sw-bamda" onclick="toggle('bamda')"><div class="knob"></div></div>
-        </div>
-
-        <div class="menu-item">
-            <div class="info"><span class="name">🔒 Headlock Pro</span><span class="desc">Khóa đầu Pro</span></div>
-            <div class="switch" id="sw-headlock" onclick="toggle('headlock')"><div class="knob"></div></div>
-        </div>
-
-        <div class="menu-item">
-            <div class="info"><span class="name">💉 DPI Config</span><span class="desc">Tải hồ sơ cấu hình</span></div>
-            <div class="switch" id="sw-dpi" onclick="toggleDPI()"><div class="knob"></div></div>
+    <!-- PANEL iOS -->
+    <div class="panel active" id="panel-ios">
+        <div class="info-box">
+            <div class="title">📱 iOS - ĐỘ NHẠY THƯỜNG</div>
+            <div class="desc">Độ nhạy iOS thường dao động <b>130 - 160</b>. Nếu máy nặng tâm, tăng lên. Nếu lố, giảm xuống.</div>
         </div>
 
         <div class="slider-item">
-            <div class="info"><span class="name">🎚️ Độ nhạy Aim</span><span class="value" id="sensVal">85</span></div>
-            <input type="range" min="1" max="100" value="85" id="sensSlider" oninput="updateSens(this.value)">
+            <div class="top">
+                <span class="name">🎯 General (Chung)</span>
+                <span class="value" id="ios-general-val">145</span>
+            </div>
+            <input type="range" min="130" max="160" value="145" id="ios-general" oninput="updateIos('general', this.value)">
+            <div class="range-info"><span>130</span><span>145</span><span>160</span></div>
         </div>
 
-        <button class="btn-run" onclick="runGame()">⚡ CHẠY GAME</button>
+        <div class="slider-item">
+            <div class="top">
+                <span class="name">🔴 Red Dot (Chấm đỏ)</span>
+                <span class="value" id="ios-reddot-val">145</span>
+            </div>
+            <input type="range" min="130" max="160" value="145" id="ios-reddot" oninput="updateIos('reddot', this.value)">
+            <div class="range-info"><span>130</span><span>145</span><span>160</span></div>
+        </div>
 
-        <div class="progress-box" id="progressBox">
-            <div class="progress-text" id="progressText">Đang tải... 0%</div>
-            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="slider-item">
+            <div class="top">
+                <span class="name">🔭 2x Scope</span>
+                <span class="value" id="ios-2x-val">140</span>
+            </div>
+            <input type="range" min="130" max="160" value="140" id="ios-2x" oninput="updateIos('2x', this.value)">
+            <div class="range-info"><span>130</span><span>145</span><span>160</span></div>
+        </div>
+
+        <div class="slider-item">
+            <div class="top">
+                <span class="name">🔭 4x Scope</span>
+                <span class="value" id="ios-4x-val">135</span>
+            </div>
+            <input type="range" min="130" max="160" value="135" id="ios-4x" oninput="updateIos('4x', this.value)">
+            <div class="range-info"><span>130</span><span>145</span><span>160</span></div>
+        </div>
+
+        <div class="slider-item">
+            <div class="top">
+                <span class="name">🎯 AWM Scope</span>
+                <span class="value" id="ios-awm-val">130</span>
+            </div>
+            <input type="range" min="130" max="160" value="130" id="ios-awm" oninput="updateIos('awm', this.value)">
+            <div class="range-info"><span>130</span><span>145</span><span>160</span></div>
+        </div>
+
+        <!-- ĐÁNH GIÁ -->
+        <div class="evaluate-box">
+            <div class="title">📝 ĐÁNH GIÁ ĐỘ NHẠY</div>
+            <div class="eval-buttons">
+                <button class="eval-btn good" onclick="evaluate('ios', 'tot')">✅ Tốt - Không lố</button>
+                <button class="eval-btn" onclick="evaluate('ios', 'nang')">⚠️ Nặng tâm</button>
+                <button class="eval-btn" onclick="evaluate('ios', 'sieu-nang')">🔥 Siêu nặng</button>
+                <button class="eval-btn bad" onclick="evaluate('ios', 'lo')">❌ Bị lố</button>
+            </div>
+
+            <div class="result-box" id="result-ios">
+                <div class="result-title" id="result-ios-title">Kết quả</div>
+                <div class="result-text" id="result-ios-text">—</div>
+                <div class="result-actions">
+                    <button class="btn-reset" onclick="resetIos()">🔄 Chỉnh lại</button>
+                    <button class="btn-ok" onclick="closeResult('ios')">✅ OK</button>
+                </div>
+            </div>
         </div>
     </div>
 
-</div>
+    <!-- PANEL ANDROID -->
+    <div class="panel" id="panel-adr">
+        <div class="info-box">
+            <div class="title">🤖 ANDROID - ĐỘ NHẠY THƯỜNG</div>
+            <div class="desc">Độ nhạy Android thường dao động <b>100 - 200</b>, tùy thuộc vào từng dòng máy. Nếu nặng tâm, tăng lên. Nếu lố, giảm xuống.</div>
+        </div>
 
-<div class="modal-overlay" id="deviceModal">
-    <div class="modal-box">
-        <div class="modal-title">CHỌN DÒNG MÁY</div>
-        <div class="modal-sub">Chọn máy để tải hồ sơ cấu hình</div>
+        <div class="slider-item">
+            <div class="top">
+                <span class="name">🎯 General (Chung)</span>
+                <span class="value" id="adr-general-val">150</span>
+            </div>
+            <input type="range" min="100" max="200" value="150" id="adr-general" oninput="updateAdr('general', this.value)">
+            <div class="range-info"><span>100</span><span>150</span><span>200</span></div>
+        </div>
 
-        <button class="device-btn" onclick="downloadProfile('iPhone 6/6 Plus','iPhone6')">📱 iPhone 6 / 6 Plus</button>
-        <button class="device-btn" onclick="downloadProfile('iPhone 6s/6s Plus','iPhone6s')">📱 iPhone 6s / 6s Plus</button>
-        <button class="device-btn" onclick="downloadProfile('iPhone 7/7 Plus','iPhone7')">📱 iPhone 7 / 7 Plus</button>
-        <button class="device-btn" onclick="downloadProfile('iPhone 8/8 Plus','iPhone8')">📱 iPhone 8 / 8 Plus</button>
-        <button class="device-btn" onclick="downloadProfile('iPhone X/XS/XR','iPhoneX')">📱 iPhone X / XS / XR</button>
-        <button class="device-btn" onclick="downloadProfile('iPhone 11 Series','iPhone11')">📱 iPhone 11 / 11 Pro / Pro Max</button>
-        <button class="device-btn" onclick="downloadProfile('iPhone 12 Series','iPhone12')">📱 iPhone 12 Series</button>
-        <button class="device-btn" onclick="downloadProfile('iPhone 13 Series','iPhone13')">📱 iPhone 13 Series</button>
-        <button class="device-btn" onclick="downloadProfile('iPhone 14 Series','iPhone14')">📱 iPhone 14 Series</button>
-        <button class="device-btn" onclick="downloadProfile('iPhone 15 Series','iPhone15')">📱 iPhone 15 Series</button>
-        <button class="device-btn" onclick="downloadProfile('iPhone 16 Series','iPhone16')">📱 iPhone 16 Series</button>
-        <button class="device-btn" onclick="downloadProfile('iPhone 17 Series','iPhone17')">📱 iPhone 17 Series</button>
+        <div class="slider-item">
+            <div class="top">
+                <span class="name">🔴 Red Dot (Chấm đỏ)</span>
+                <span class="value" id="adr-reddot-val">150</span>
+            </div>
+            <input type="range" min="100" max="200" value="150" id="adr-reddot" oninput="updateAdr('reddot', this.value)">
+            <div class="range-info"><span>100</span><span>150</span><span>200</span></div>
+        </div>
 
-        <button class="modal-close" onclick="closeModal()">Đóng</button>
+        <div class="slider-item">
+            <div class="top">
+                <span class="name">🔭 2x Scope</span>
+                <span class="value" id="adr-2x-val">140</span>
+            </div>
+            <input type="range" min="100" max="200" value="140" id="adr-2x" oninput="updateAdr('2x', this.value)">
+            <div class="range-info"><span>100</span><span>150</span><span>200</span></div>
+        </div>
+
+        <div class="slider-item">
+            <div class="top">
+                <span class="name">🔭 4x Scope</span>
+                <span class="value" id="adr-4x-val">130</span>
+            </div>
+            <input type="range" min="100" max="200" value="130" id="adr-4x" oninput="updateAdr('4x', this.value)">
+            <div class="range-info"><span>100</span><span>150</span><span>200</span></div>
+        </div>
+
+        <div class="slider-item">
+            <div class="top">
+                <span class="name">🎯 AWM Scope</span>
+                <span class="value" id="adr-awm-val">120</span>
+            </div>
+            <input type="range" min="100" max="200" value="120" id="adr-awm" oninput="updateAdr('awm', this.value)">
+            <div class="range-info"><span>100</span><span>150</span><span>200</span></div>
+        </div>
+
+        <!-- ĐÁNH GIÁ -->
+        <div class="evaluate-box">
+            <div class="title">📝 ĐÁNH GIÁ ĐỘ NHẠY</div>
+            <div class="eval-buttons">
+                <button class="eval-btn good" onclick="evaluate('adr', 'tot')">✅ Tốt - Không lố</button>
+                <button class="eval-btn" onclick="evaluate('adr', 'nang')">⚠️ Nặng tâm</button>
+                <button class="eval-btn" onclick="evaluate('adr', 'sieu-nang')">🔥 Siêu nặng</button>
+                <button class="eval-btn bad" onclick="evaluate('adr', 'lo')">❌ Bị lố</button>
+            </div>
+
+            <div class="result-box" id="result-adr">
+                <div class="result-title" id="result-adr-title">Kết quả</div>
+                <div class="result-text" id="result-adr-text">—</div>
+                <div class="result-actions">
+                    <button class="btn-reset" onclick="resetAdr()">🔄 Chỉnh lại</button>
+                    <button class="btn-ok" onclick="closeResult('adr')">✅ OK</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <button class="btn-main" onclick="applyConfig()">⚡ ÁP DỤNG ĐỘ NHẠY</button>
+
+    <div class="footer">● MENU ĐỘ NHẠY FF · iOS & ANDROID ●</div>
+
 </div>
 
 <script>
-// ===== TẤT CẢ MẶC ĐỊNH ĐỀU TẮT =====
-function getDefaultConfig() {
-    return { aimco: false, nhetam: false, bamda: false, headlock: false, dpi: false, sens: 85 };
-}
+// ===== CONFIG =====
+let iosConfig = { general: 145, reddot: 145, '2x': 140, '4x': 135, awm: 130 };
+let adrConfig = { general: 150, reddot: 150, '2x': 140, '4x': 130, awm: 120 };
 
-let config = getDefaultConfig();
-
-function toggle(key) {
-    config[key] = !config[key];
-    const sw = document.getElementById('sw-' + key);
-    if (config[key]) sw.classList.add('active');
-    else sw.classList.remove('active');
-}
-
-function toggleDPI() {
-    config.dpi = !config.dpi;
-    const sw = document.getElementById('sw-dpi');
-    if (config.dpi) {
-        sw.classList.add('active');
-        openModal();
+// ===== SWITCH TAB =====
+function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    if (tab === 'ios') {
+        document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
+        document.getElementById('panel-ios').classList.add('active');
     } else {
-        sw.classList.remove('active');
+        document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+        document.getElementById('panel-adr').classList.add('active');
     }
 }
 
-function openModal() {
-    document.getElementById('deviceModal').classList.add('show');
+// ===== UPDATE IOS =====
+function updateIos(key, val) {
+    iosConfig[key] = parseInt(val);
+    document.getElementById('ios-' + key + '-val').textContent = val;
 }
 
-function closeModal() {
-    document.getElementById('deviceModal').classList.remove('show');
-    config.dpi = false;
-    document.getElementById('sw-dpi').classList.remove('active');
+// ===== UPDATE ADR =====
+function updateAdr(key, val) {
+    adrConfig[key] = parseInt(val);
+    document.getElementById('adr-' + key + '-val').textContent = val;
 }
 
-function generateMobileConfig(deviceName, deviceID) {
-    const uuid = 'AIMLOCK-' + deviceID.toUpperCase() + '-' + Date.now();
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>PayloadType</key>
-    <string>Configuration</string>
-    <key>PayloadVersion</key>
-    <integer>1</integer>
-    <key>PayloadIdentifier</key>
-    <string>com.aimlock.${deviceID}</string>
-    <key>PayloadUUID</key>
-    <string>${uuid}</string>
-    <key>PayloadDisplayName</key>
-    <string>🔥 AIMLOCK - ${deviceName}</string>
-    <key>PayloadDescription</key>
-    <string>Tối ưu cảm ứng cho ${deviceName}</string>
-    <key>PayloadOrganization</key>
-    <string>AIMLOCK PRO</string>
-    <key>PayloadRemovalDisallowed</key>
-    <false/>
-    <key>PayloadContent</key>
-    <array>
-        <dict>
-            <key>PayloadType</key>
-            <string>com.apple.Accessibility</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>PayloadIdentifier</key>
-            <string>com.aimlock.${deviceID}.touch</string>
-            <key>PayloadUUID</key>
-            <string>${uuid}-TOUCH</string>
-            <key>TouchAccommodations</key>
-            <dict>
-                <key>Enabled</key>
-                <true/>
-                <key>HoldDuration</key>
-                <real>0.0</real>
-                <key>IgnoreRepeat</key>
-                <true/>
-                <key>TapAssistance</key>
-                <string>FollowFinger</string>
-                <key>GlideSpeed</key>
-                <string>InstantLock</string>
-                <key>PointerPrecision</key>
-                <string>Maximum</string>
-                <key>TapTimeout</key>
-                <real>0.0</real>
-            </dict>
-            <key>ReduceMotion</key>
-            <true/>
-            <key>ReduceTransparency</key>
-            <true/>
-            <key>IncreaseContrast</key>
-            <true/>
-            <key>SystemHaptics</key>
-            <false/>
-            <key>Vibration</key>
-            <dict>
-                <key>Enabled</key>
-                <false/>
-            </dict>
-        </dict>
-        <dict>
-            <key>PayloadType</key>
-            <string>com.apple.systemconfiguration</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>PayloadIdentifier</key>
-            <string>com.aimlock.${deviceID}.network</string>
-            <key>PayloadUUID</key>
-            <string>${uuid}-NET</string>
-            <key>NetworkLatencyReducer</key>
-            <true/>
-            <key>TCPOptimization</key>
-            <true/>
-            <key>QoSCapability</key>
-            <string>HighPriority</string>
-        </dict>
-    </array>
-</dict>
-</plist>`;
-    return xml;
-}
+// ===== ĐÁNH GIÁ =====
+function evaluate(os, type) {
+    const config = os === 'ios' ? iosConfig : adrConfig;
+    const resultBox = document.getElementById('result-' + os);
+    const resultTitle = document.getElementById('result-' + os + '-title');
+    const resultText = document.getElementById('result-' + os + '-text');
 
-function downloadProfile(deviceName, deviceID) {
-    const xml = generateMobileConfig(deviceName, deviceID);
-    const blob = new Blob([xml], { type: 'application/x-apple-aspen-config' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `AIMLOCK_${deviceID}.mobileconfig`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    closeModal();
-}
+    let message = '';
+    let increase = 0;
 
-function updateSens(val) {
-    config.sens = parseInt(val);
-    document.getElementById('sensVal').textContent = val;
-}
-
-function runGame() {
-    const box = document.getElementById('progressBox');
-    const text = document.getElementById('progressText');
-    const fill = document.getElementById('progressFill');
-    box.classList.add('show');
-    let p = 0;
-    fill.style.width = '0%';
-
-    const interval = setInterval(() => {
-        p++;
-        fill.style.width = p + '%';
-        if (p < 100) {
-            text.textContent = 'Đang tải... ' + p + '%';
-        } else {
-            text.textContent = '✅ Đang áp dụng...';
-            clearInterval(interval);
-            setTimeout(() => {
-                text.textContent = '🔥 ĐÃ ÁP DỤNG - VÀO GAME!';
-            }, 800);
-        }
-    }, 25);
-}
-
-// ===== RESET KHI ĐÓNG TRANG =====
-window.addEventListener('beforeunload', () => { config = getDefaultConfig(); });
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        config = getDefaultConfig();
-        for (const key of ['aimco', 'nhetam', 'bamda', 'headlock', 'dpi']) {
-            const sw = document.getElementById('sw-' + key);
-            if (sw) sw.classList.remove('active');
-        }
-        const sensEl = document.getElementById('sensSlider');
-        const sensValEl = document.getElementById('sensVal');
-        if (sensEl) sensEl.value = 85;
-        if (sensValEl) sensValEl.textContent = '85';
+    if (type === 'tot') {
+        resultTitle.textContent = '✅ TỐT - KHÔNG LỐ';
+        message = 'Độ nhạy hiện tại đã ổn. Giữ nguyên và vào game test!';
+        increase = 0;
+    } else if (type === 'nang') {
+        resultTitle.textContent = '⚠️ NẶNG TÂM';
+        message = 'Tăng độ nhạy lên 1-2 đơn vị. Nếu vẫn nặng, tăng tiếp 5 đơn vị.';
+        increase = 2;
+    } else if (type === 'sieu-nang') {
+        resultTitle.textContent = '🔥 SIÊU NẶNG';
+        message = 'Tăng độ nhạy lên 10 đơn vị. Nếu vẫn nặng, tăng tiếp 5 đơn vị.';
+        increase = 10;
+    } else if (type === 'lo') {
+        resultTitle.textContent = '❌ BỊ LỐ';
+        message = 'Giảm độ nhạy xuống 5 đơn vị. Nếu vẫn lố, giảm tiếp 3 đơn vị.';
+        increase = -5;
     }
-});
 
-// ===== KHỞI TẠO: TẮT HẾT =====
-(function init() {
-    config = getDefaultConfig();
-    for (const key of ['aimco', 'nhetam', 'bamda', 'headlock', 'dpi']) {
-        const sw = document.getElementById('sw-' + key);
-        if (sw) sw.classList.remove('active');
+    // Áp dụng tăng/giảm
+    if (increase !== 0) {
+        const keys = ['general', 'reddot', '2x', '4x', 'awm'];
+        keys.forEach(k => {
+            const el = document.getElementById(os + '-' + k);
+            const newVal = Math.max(parseInt(el.min), Math.min(parseInt(el.max), parseInt(el.value) + increase));
+            el.value = newVal;
+            if (os === 'ios') updateIos(k, newVal);
+            else updateAdr(k, newVal);
+        });
+        message += `\n\nĐã tự động ${increase > 0 ? 'tăng' : 'giảm'} ${Math.abs(increase)} đơn vị cho tất cả mục.`;
     }
-    document.getElementById('sensSlider').value = 85;
-    document.getElementById('sensVal').textContent = '85';
-})();
+
+    resultText.textContent = message;
+    resultBox.classList.add('show');
+}
+
+// ===== RESET =====
+function resetIos() {
+    iosConfig = { general: 145, reddot: 145, '2x': 140, '4x': 135, awm: 130 };
+    for (const key in iosConfig) {
+        document.getElementById('ios-' + key).value = iosConfig[key];
+        document.getElementById('ios-' + key + '-val').textContent = iosConfig[key];
+    }
+    document.getElementById('result-ios').classList.remove('show');
+}
+
+function resetAdr() {
+    adrConfig = { general: 150, reddot: 150, '2x': 140, '4x': 130, awm: 120 };
+    for (const key in adrConfig) {
+        document.getElementById('adr-' + key).value = adrConfig[key];
+        document.getElementById('adr-' + key + '-val').textContent = adrConfig[key];
+    }
+    document.getElementById('result-adr').classList.remove('show');
+}
+
+function closeResult(os) {
+    document.getElementById('result-' + os).classList.remove('show');
+}
+
+// ===== ÁP DỤNG =====
+function applyConfig() {
+    const os = document.getElementById('panel-ios').classList.contains('active') ? 'iOS' : 'Android';
+    const config = os === 'iOS' ? iosConfig : adrConfig;
+    alert('⚡ ĐÃ ÁP DỤNG ĐỘ NHẠY ' + os + '\n\n' +
+          'General: ' + config.general + '\n' +
+          'Red Dot: ' + config.reddot + '\n' +
+          '2x Scope: ' + config['2x'] + '\n' +
+          '4x Scope: ' + config['4x'] + '\n' +
+          'AWM Scope: ' + config.awm + '\n\n' +
+          '👉 Vào game chỉnh theo thông số này!');
+}
 </script>
+
 </body>
 </html>
