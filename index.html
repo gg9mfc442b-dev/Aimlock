@@ -1,419 +1,359 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>🎯 MENU ĐỘ NHẠY FF</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-body {
-    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
-    background: radial-gradient(ellipse at top, #1a0a0a 0%, #000000 70%);
-    min-height: 100vh; padding: 16px;
-    color: #fff; user-select: none;
-}
-.container { max-width: 420px; margin: 0 auto; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Menu Mod FF MAX - Cấu hình DDC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
 
-/* HEADER */
-.header { text-align: center; margin-bottom: 16px; }
-.header h1 {
-    font-size: 24px; font-weight: 800;
-    background: linear-gradient(90deg, #ff3333, #ff8800);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    letter-spacing: 2px;
-}
-.header .sub { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 2px; margin-top: 4px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-/* TAB CHỌN HỆ ĐIỀU HÀNH */
-.tab-bar {
-    display: flex; gap: 8px; margin-bottom: 16px;
-    background: rgba(0,0,0,0.4); border-radius: 14px; padding: 6px;
-}
-.tab-btn {
-    flex: 1; padding: 14px; border: none; border-radius: 10px;
-    font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.5);
-    background: transparent; cursor: pointer; transition: all 0.3s ease;
-}
-.tab-btn.active {
-    background: linear-gradient(90deg, #ff2222, #ff6600);
-    color: #fff; box-shadow: 0 0 20px rgba(255,50,50,0.5);
-}
+        body {
+            background-color: #001a33; 
+            background-image: radial-gradient(circle at top, #004488 0%, #001a33 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 50px;
+            transition: filter 0.3s ease; 
+        }
 
-/* PANEL */
-.panel { display: none; }
-.panel.active { display: block; }
+        body.boost-active {
+            filter: brightness(1.3) contrast(1.1);
+        }
 
-/* INFO BOX */
-.info-box {
-    background: rgba(255,255,255,0.05); border-radius: 14px;
-    padding: 14px 16px; margin-bottom: 14px;
-    border-left: 3px solid #ff3333;
-}
-.info-box .title { font-size: 13px; font-weight: 700; color: #ff5555; margin-bottom: 4px; }
-.info-box .desc { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+        .top-nav {
+            width: 100%;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: linear-gradient(to bottom, #001a33 70%, transparent);
+            z-index: 100;
+        }
 
-/* SLIDER */
-.slider-item {
-    background: rgba(255,255,255,0.05); border-radius: 14px;
-    padding: 16px; margin-bottom: 10px;
-    border: 1px solid rgba(255,50,50,0.2);
-}
-.slider-item .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-.slider-item .name { font-size: 15px; font-weight: 700; color: #fff; }
-.slider-item .value {
-    font-size: 18px; font-weight: 800; color: #ff8844;
-    background: rgba(0,0,0,0.4); padding: 4px 14px; border-radius: 8px;
-    min-width: 70px; text-align: center;
-}
-input[type="range"] {
-    -webkit-appearance: none; appearance: none; width: 100%; height: 6px;
-    border-radius: 3px; background: rgba(255,255,255,0.15); outline: none;
-}
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none; appearance: none; width: 24px; height: 24px;
-    border-radius: 50%; background: linear-gradient(135deg, #ff3333, #ff8800);
-    cursor: pointer; box-shadow: 0 0 20px rgba(255,50,50,0.6);
-}
-.slider-item .range-info {
-    display: flex; justify-content: space-between; margin-top: 6px;
-    font-size: 10px; color: rgba(255,255,255,0.3);
-}
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #003366;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: #fff;
+            border: 1px solid #0055aa;
+        }
 
-/* NÚT ĐÁNH GIÁ */
-.evaluate-box {
-    background: rgba(255,255,255,0.05); border-radius: 14px;
-    padding: 16px; margin-top: 14px;
-    border: 1px solid rgba(255,50,50,0.2);
-}
-.evaluate-box .title { font-size: 14px; font-weight: 700; color: #ff5555; margin-bottom: 12px; text-align: center; }
-.eval-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.eval-btn {
-    padding: 12px 8px; border: none; border-radius: 10px;
-    font-size: 12px; font-weight: 700; color: #fff; cursor: pointer;
-    background: rgba(255,50,50,0.2); border: 1px solid rgba(255,50,50,0.3);
-    transition: all 0.2s ease;
-}
-.eval-btn:active { transform: scale(0.96); }
-.eval-btn.good { background: rgba(68,255,136,0.2); border-color: rgba(68,255,136,0.4); }
-.eval-btn.bad { background: rgba(255,50,50,0.3); border-color: rgba(255,50,50,0.5); }
+        .nav-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00d4ff;
+        }
 
-/* KẾT QUẢ ĐÁNH GIÁ */
-.result-box {
-    display: none; margin-top: 14px;
-    background: rgba(0,0,0,0.5); border-radius: 14px;
-    padding: 16px; border: 1px solid rgba(255,50,50,0.3);
-}
-.result-box.show { display: block; }
-.result-box .result-title { font-size: 14px; font-weight: 700; color: #ff8844; margin-bottom: 8px; }
-.result-box .result-text { font-size: 13px; color: #fff; line-height: 1.6; margin-bottom: 12px; }
-.result-box .result-actions { display: flex; gap: 8px; }
-.btn-reset, .btn-ok {
-    flex: 1; padding: 12px; border: none; border-radius: 10px;
-    font-size: 13px; font-weight: 700; cursor: pointer;
-}
-.btn-reset {
-    background: rgba(255,50,50,0.2); color: #ff5555;
-    border: 1px solid rgba(255,50,50,0.4);
-}
-.btn-ok {
-    background: linear-gradient(90deg, #ff2222, #ff6600); color: #fff;
-}
+        .section-container {
+            width: 90%;
+            max-width: 400px;
+            margin-top: 20px;
+            border-radius: 16px;
+            padding: 20px;
+            background-color: #002244; 
+            position: relative;
+            border: 1px solid #00aaff;
+            box-shadow: 0 0 15px rgba(0, 170, 255, 0.3), inset 0 0 10px rgba(0, 170, 255, 0.1);
+        }
 
-/* NÚT CHÍNH */
-.btn-main {
-    width: 100%; margin-top: 16px; padding: 18px;
-    border: none; border-radius: 16px;
-    font-size: 17px; font-weight: 800; color: #fff;
-    background: linear-gradient(90deg, #ff2222, #ff6600);
-    letter-spacing: 2px; cursor: pointer;
-    box-shadow: 0 0 25px rgba(255,50,50,0.5);
-}
-.btn-main:active { transform: scale(0.98); }
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 900;
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+            margin-bottom: 5px;
+        }
 
-.footer {
-    text-align: center; font-size: 10px;
-    color: rgba(255,255,255,0.2); letter-spacing: 2px;
-    margin-top: 20px;
-}
-</style>
+        .section-subtitle {
+            text-align: center;
+            font-size: 12px;
+            color: #7a9fb6;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(to right, transparent, #0055aa, transparent);
+            margin-bottom: 20px;
+        }
+
+        .toggle-row {
+            background-color: #002b55; 
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 3px solid #00aaff;
+            transition: all 0.3s;
+        }
+
+        .row-info { display: flex; flex-direction: column; }
+
+        .row-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #e0f0ff;
+            margin-bottom: 3px;
+        }
+        
+        .row-title.special-perm { color: #00ffff; }
+        .row-title.special-boost { color: #ffcc00; }
+
+        .row-desc { font-size: 11px; color: #6a9aba; }
+
+        .pill-toggle {
+            background-color: #003366;
+            color: #5a8aa8;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .theme-blue .pill-toggle.active {
+            background-color: rgba(0, 170, 255, 0.2);
+            color: #00aaff;
+            border-color: #00aaff;
+            box-shadow: 0 0 8px rgba(0, 170, 255, 0.4);
+        }
+        
+        .pill-toggle.active.perm-active {
+            background-color: rgba(0, 255, 255, 0.15);
+            color: #00ffff;
+            border-color: #00ffff;
+        }
+
+        .pill-toggle.active.boost-active {
+            background-color: rgba(255, 204, 0, 0.15);
+            color: #ffcc00;
+            border-color: #ffcc00;
+        }
+
+        .btn-apply {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 10px;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            border: 1px solid #00aaff;
+            color: #00aaff;
+        }
+
+    </style>
 </head>
 <body>
-<div class="container">
 
-    <div class="header">
-        <h1>🎯 MENU ĐỘ NHẠY FF</h1>
-        <div class="sub">iOS & ANDROID · TÙY CHỈNH ĐỘ NHẠY</div>
+    <div class="top-nav">
+        <div class="nav-btn">☰</div>
+        <div class="nav-title">menu <span>⌄</span></div>
+        <div class="nav-btn">✕</div>
     </div>
 
-    <!-- TAB -->
-    <div class="tab-bar">
-        <button class="tab-btn active" onclick="switchTab('ios')">🍎 iOS</button>
-        <button class="tab-btn" onclick="switchTab('adr')">🤖 Android</button>
+    <div class="section-container theme-blue">
+        <div class="section-title">FREE FIRE MAX</div>
+        <div class="section-subtitle">Tải Cấu Hình Tự Động (DDC)</div>
+        <div class="divider"></div>
+
+        <!-- Aimlock -->
+        <div class="toggle-row" onclick="togglePill(this, 'blue')">
+            <div class="row-info">
+                <div class="row-title">Aimlock</div>
+                <div class="row-desc">Hold 0.25 - Tap 0.5</div>
+            </div>
+            <div class="pill-toggle active" onclick="downloadConfig(event, 'aimlock')">ON</div>
+        </div>
+
+        <!-- Nhẹ tâm -->
+        <div class="toggle-row" onclick="togglePill(this, 'blue')">
+            <div class="row-info">
+                <div class="row-title">Nhẹ Tâm</div>
+                <div class="row-desc">Hold 0.10 - Tap 0.58</div>
+            </div>
+            <div class="pill-toggle active" onclick="downloadConfig(event, 'nhetam')">ON</div>
+        </div>
+
+        <!-- Fix rung -->
+        <div class="toggle-row" onclick="togglePill(this, 'blue')">
+            <div class="row-info">
+                <div class="row-title">Fix Rung</div>
+                <div class="row-desc">Hold 1.25 - Tap 2.00</div>
+            </div>
+            <div class="pill-toggle active" onclick="downloadConfig(event, 'fixrung')">ON</div>
+        </div>
+
+        <!-- Tăng FPS (Chưa có cấu hình cụ thể, chỉ hiệu ứng) -->
+        <div class="toggle-row" onclick="togglePill(this, 'blue')">
+            <div class="row-info">
+                <div class="row-title">Tăng FPS</div>
+                <div class="row-desc">Tối ưu đồ họa, giảm lag giật</div>
+            </div>
+            <div class="pill-toggle active">ON</div>
+        </div>
+        
+        <!-- Boost Màn -->
+        <div class="toggle-row" onclick="togglePill(this, 'boost')">
+            <div class="row-info">
+                <div class="row-title special-boost">Boost Màn</div>
+                <div class="row-desc">Cấu hình tăng độ sáng</div>
+            </div>
+            <div class="pill-toggle active boost-active" onclick="downloadConfig(event, 'boost')">ON</div>
+        </div>
+
+        <!-- Cấp Quyền Tâm Đỏ -->
+        <div class="toggle-row" onclick="togglePill(this, 'perm')">
+            <div class="row-info">
+                <div class="row-title special-perm">Cấp Quyền Tâm Đỏ</div>
+                <div class="row-desc">Cấu hình can thiệp bộ nhớ</div>
+            </div>
+            <div class="pill-toggle active perm-active" onclick="downloadConfig(event, 'quyen')">ON</div>
+        </div>
+
+        <button class="btn-apply" onclick="applyConfig('https://apps.apple.com/app/id1480516829', this)">APPLY FF MAX</button>
     </div>
 
-    <!-- PANEL iOS -->
-    <div class="panel active" id="panel-ios">
-        <div class="info-box">
-            <div class="title">📱 iOS - ĐỘ NHẠY THƯỜNG</div>
-            <div class="desc">Độ nhạy iOS thường dao động <b>130 - 160</b>. Nếu máy nặng tâm, tăng lên. Nếu lố, giảm xuống.</div>
-        </div>
+    <script>
+        // Hàm xử lý đổi màu nút gạt (Chỉ hiệu ứng giao diện)
+        function togglePill(rowElement, theme) {
+            const pill = rowElement.querySelector('.pill-toggle');
+            const body = document.body;
+            
+            if (pill.classList.contains('active')) {
+                pill.classList.remove('active', 'perm-active', 'boost-active');
+                pill.innerText = 'OFF';
+                pill.style.cssText = '';
+                if (theme === 'boost') body.classList.remove('boost-active');
+            } else {
+                pill.classList.add('active');
+                if(theme === 'perm') pill.classList.add('perm-active');
+                if(theme === 'boost') {
+                    pill.classList.add('boost-active');
+                    body.classList.add('boost-active'); 
+                }
+                pill.innerText = 'ON';
+            }
+        }
 
-        <div class="slider-item">
-            <div class="top">
-                <span class="name">🎯 General (Chung)</span>
-                <span class="value" id="ios-general-val">145</span>
-            </div>
-            <input type="range" min="130" max="160" value="145" id="ios-general" oninput="updateIos('general', this.value)">
-            <div class="range-info"><span>130</span><span>145</span><span>160</span></div>
-        </div>
+        // HÀM TẠO VÀ TẢI FILE CẤU HÌNH (.mobileconfig)
+        function downloadConfig(event, type) {
+            event.stopPropagation(); // Ngăn sự kiện click lan ra ngoài (không bị đè với hàm toggle)
+            
+            // Cấu hình mẫu chuẩn của Apple
+            let plistXML = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadType</key>
+            <string>com.apple.Accessibility</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>PayloadIdentifier</key>
+            <string>com.mod.custom.touch</string>
+            <key>PayloadUUID</key>
+            <string>F1A2B3C4-D5E6-4F7A-8B9C-0D1E2F3A4B5C</string>
+            <key>PayloadDisplayName</key>
+            <string>Custom Touch Settings</string>
+            <key>TouchAccommodations</key>
+            <dict>
+                <key>Enabled</key><true/>
+                <key>HoldDuration</key><real>${getHoldTime(type)}</real> 
+                <key>TapTimeout</key><real>${getTapTime(type)}</real> 
+                <key>IgnoreRepeat</key><true/> 
+            </dict>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>Config ${type.toUpperCase()}</string>
+    <key>PayloadIdentifier</key>
+    <string>com.mod.config.${type}</string>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>`;
 
-        <div class="slider-item">
-            <div class="top">
-                <span class="name">🔴 Red Dot (Chấm đỏ)</span>
-                <span class="value" id="ios-reddot-val">145</span>
-            </div>
-            <input type="range" min="130" max="160" value="145" id="ios-reddot" oninput="updateIos('reddot', this.value)">
-            <div class="range-info"><span>130</span><span>145</span><span>160</span></div>
-        </div>
+            // Tạo file và ép trình duyệt tải xuống
+            const blob = new Blob([plistXML], { type: 'application/x-apple-aspen-config' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `config_${type}.mobileconfig`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
 
-        <div class="slider-item">
-            <div class="top">
-                <span class="name">🔭 2x Scope</span>
-                <span class="value" id="ios-2x-val">140</span>
-            </div>
-            <input type="range" min="130" max="160" value="140" id="ios-2x" oninput="updateIos('2x', this.value)">
-            <div class="range-info"><span>130</span><span>145</span><span>160</span></div>
-        </div>
+            // Hiển thị thông báo hướng dẫn
+            setTimeout(() => {
+                alert("Đã tải xuống cấu hình. Vui lòng vào Cài đặt (Settings) > Đã tải xuống (Profile Downloaded) > Cài đặt (Install) để áp dụng.");
+            }, 500);
+        }
 
-        <div class="slider-item">
-            <div class="top">
-                <span class="name">🔭 4x Scope</span>
-                <span class="value" id="ios-4x-val">135</span>
-            </div>
-            <input type="range" min="130" max="160" value="135" id="ios-4x" oninput="updateIos('4x', this.value)">
-            <div class="range-info"><span>130</span><span>145</span><span>160</span></div>
-        </div>
+        // Hàm lấy thông số Hold Duration theo yêu cầu
+        function getHoldTime(type) {
+            switch(type) {
+                case 'aimlock': return '0.25';
+                case 'nhetam': return '0.10';
+                case 'fixrung': return '1.25';
+                case 'boost': return '0.10'; 
+                case 'quyen': return '0.10';
+                default: return '0.50';
+            }
+        }
 
-        <div class="slider-item">
-            <div class="top">
-                <span class="name">🎯 AWM Scope</span>
-                <span class="value" id="ios-awm-val">130</span>
-            </div>
-            <input type="range" min="130" max="160" value="130" id="ios-awm" oninput="updateIos('awm', this.value)">
-            <div class="range-info"><span>130</span><span>145</span><span>160</span></div>
-        </div>
+        // Hàm lấy thông số Tap Timeout theo yêu cầu
+        function getTapTime(type) {
+            switch(type) {
+                case 'aimlock': return '0.50';
+                case 'nhetam': return '0.58';
+                case 'fixrung': return '2.00';
+                case 'boost': return '0.50';
+                case 'quyen': return '0.50';
+                default: return '1.00';
+            }
+        }
 
-        <!-- ĐÁNH GIÁ -->
-        <div class="evaluate-box">
-            <div class="title">📝 ĐÁNH GIÁ ĐỘ NHẠY</div>
-            <div class="eval-buttons">
-                <button class="eval-btn good" onclick="evaluate('ios', 'tot')">✅ Tốt - Không lố</button>
-                <button class="eval-btn" onclick="evaluate('ios', 'nang')">⚠️ Nặng tâm</button>
-                <button class="eval-btn" onclick="evaluate('ios', 'sieu-nang')">🔥 Siêu nặng</button>
-                <button class="eval-btn bad" onclick="evaluate('ios', 'lo')">❌ Bị lố</button>
-            </div>
-
-            <div class="result-box" id="result-ios">
-                <div class="result-title" id="result-ios-title">Kết quả</div>
-                <div class="result-text" id="result-ios-text">—</div>
-                <div class="result-actions">
-                    <button class="btn-reset" onclick="resetIos()">🔄 Chỉnh lại</button>
-                    <button class="btn-ok" onclick="closeResult('ios')">✅ OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PANEL ANDROID -->
-    <div class="panel" id="panel-adr">
-        <div class="info-box">
-            <div class="title">🤖 ANDROID - ĐỘ NHẠY THƯỜNG</div>
-            <div class="desc">Độ nhạy Android thường dao động <b>100 - 200</b>, tùy thuộc vào từng dòng máy. Nếu nặng tâm, tăng lên. Nếu lố, giảm xuống.</div>
-        </div>
-
-        <div class="slider-item">
-            <div class="top">
-                <span class="name">🎯 General (Chung)</span>
-                <span class="value" id="adr-general-val">150</span>
-            </div>
-            <input type="range" min="100" max="200" value="150" id="adr-general" oninput="updateAdr('general', this.value)">
-            <div class="range-info"><span>100</span><span>150</span><span>200</span></div>
-        </div>
-
-        <div class="slider-item">
-            <div class="top">
-                <span class="name">🔴 Red Dot (Chấm đỏ)</span>
-                <span class="value" id="adr-reddot-val">150</span>
-            </div>
-            <input type="range" min="100" max="200" value="150" id="adr-reddot" oninput="updateAdr('reddot', this.value)">
-            <div class="range-info"><span>100</span><span>150</span><span>200</span></div>
-        </div>
-
-        <div class="slider-item">
-            <div class="top">
-                <span class="name">🔭 2x Scope</span>
-                <span class="value" id="adr-2x-val">140</span>
-            </div>
-            <input type="range" min="100" max="200" value="140" id="adr-2x" oninput="updateAdr('2x', this.value)">
-            <div class="range-info"><span>100</span><span>150</span><span>200</span></div>
-        </div>
-
-        <div class="slider-item">
-            <div class="top">
-                <span class="name">🔭 4x Scope</span>
-                <span class="value" id="adr-4x-val">130</span>
-            </div>
-            <input type="range" min="100" max="200" value="130" id="adr-4x" oninput="updateAdr('4x', this.value)">
-            <div class="range-info"><span>100</span><span>150</span><span>200</span></div>
-        </div>
-
-        <div class="slider-item">
-            <div class="top">
-                <span class="name">🎯 AWM Scope</span>
-                <span class="value" id="adr-awm-val">120</span>
-            </div>
-            <input type="range" min="100" max="200" value="120" id="adr-awm" oninput="updateAdr('awm', this.value)">
-            <div class="range-info"><span>100</span><span>150</span><span>200</span></div>
-        </div>
-
-        <!-- ĐÁNH GIÁ -->
-        <div class="evaluate-box">
-            <div class="title">📝 ĐÁNH GIÁ ĐỘ NHẠY</div>
-            <div class="eval-buttons">
-                <button class="eval-btn good" onclick="evaluate('adr', 'tot')">✅ Tốt - Không lố</button>
-                <button class="eval-btn" onclick="evaluate('adr', 'nang')">⚠️ Nặng tâm</button>
-                <button class="eval-btn" onclick="evaluate('adr', 'sieu-nang')">🔥 Siêu nặng</button>
-                <button class="eval-btn bad" onclick="evaluate('adr', 'lo')">❌ Bị lố</button>
-            </div>
-
-            <div class="result-box" id="result-adr">
-                <div class="result-title" id="result-adr-title">Kết quả</div>
-                <div class="result-text" id="result-adr-text">—</div>
-                <div class="result-actions">
-                    <button class="btn-reset" onclick="resetAdr()">🔄 Chỉnh lại</button>
-                    <button class="btn-ok" onclick="closeResult('adr')">✅ OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <button class="btn-main" onclick="applyConfig()">⚡ ÁP DỤNG ĐỘ NHẠY</button>
-
-    <div class="footer">● MENU ĐỘ NHẠY FF · iOS & ANDROID ●</div>
-
-</div>
-
-<script>
-// ===== CONFIG =====
-let iosConfig = { general: 145, reddot: 145, '2x': 140, '4x': 135, awm: 130 };
-let adrConfig = { general: 150, reddot: 150, '2x': 140, '4x': 130, awm: 120 };
-
-// ===== SWITCH TAB =====
-function switchTab(tab) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    if (tab === 'ios') {
-        document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
-        document.getElementById('panel-ios').classList.add('active');
-    } else {
-        document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
-        document.getElementById('panel-adr').classList.add('active');
-    }
-}
-
-// ===== UPDATE IOS =====
-function updateIos(key, val) {
-    iosConfig[key] = parseInt(val);
-    document.getElementById('ios-' + key + '-val').textContent = val;
-}
-
-// ===== UPDATE ADR =====
-function updateAdr(key, val) {
-    adrConfig[key] = parseInt(val);
-    document.getElementById('adr-' + key + '-val').textContent = val;
-}
-
-// ===== ĐÁNH GIÁ =====
-function evaluate(os, type) {
-    const config = os === 'ios' ? iosConfig : adrConfig;
-    const resultBox = document.getElementById('result-' + os);
-    const resultTitle = document.getElementById('result-' + os + '-title');
-    const resultText = document.getElementById('result-' + os + '-text');
-
-    let message = '';
-    let increase = 0;
-
-    if (type === 'tot') {
-        resultTitle.textContent = '✅ TỐT - KHÔNG LỐ';
-        message = 'Độ nhạy hiện tại đã ổn. Giữ nguyên và vào game test!';
-        increase = 0;
-    } else if (type === 'nang') {
-        resultTitle.textContent = '⚠️ NẶNG TÂM';
-        message = 'Tăng độ nhạy lên 1-2 đơn vị. Nếu vẫn nặng, tăng tiếp 5 đơn vị.';
-        increase = 2;
-    } else if (type === 'sieu-nang') {
-        resultTitle.textContent = '🔥 SIÊU NẶNG';
-        message = 'Tăng độ nhạy lên 10 đơn vị. Nếu vẫn nặng, tăng tiếp 5 đơn vị.';
-        increase = 10;
-    } else if (type === 'lo') {
-        resultTitle.textContent = '❌ BỊ LỐ';
-        message = 'Giảm độ nhạy xuống 5 đơn vị. Nếu vẫn lố, giảm tiếp 3 đơn vị.';
-        increase = -5;
-    }
-
-    // Áp dụng tăng/giảm
-    if (increase !== 0) {
-        const keys = ['general', 'reddot', '2x', '4x', 'awm'];
-        keys.forEach(k => {
-            const el = document.getElementById(os + '-' + k);
-            const newVal = Math.max(parseInt(el.min), Math.min(parseInt(el.max), parseInt(el.value) + increase));
-            el.value = newVal;
-            if (os === 'ios') updateIos(k, newVal);
-            else updateAdr(k, newVal);
-        });
-        message += `\n\nĐã tự động ${increase > 0 ? 'tăng' : 'giảm'} ${Math.abs(increase)} đơn vị cho tất cả mục.`;
-    }
-
-    resultText.textContent = message;
-    resultBox.classList.add('show');
-}
-
-// ===== RESET =====
-function resetIos() {
-    iosConfig = { general: 145, reddot: 145, '2x': 140, '4x': 135, awm: 130 };
-    for (const key in iosConfig) {
-        document.getElementById('ios-' + key).value = iosConfig[key];
-        document.getElementById('ios-' + key + '-val').textContent = iosConfig[key];
-    }
-    document.getElementById('result-ios').classList.remove('show');
-}
-
-function resetAdr() {
-    adrConfig = { general: 150, reddot: 150, '2x': 140, '4x': 130, awm: 120 };
-    for (const key in adrConfig) {
-        document.getElementById('adr-' + key).value = adrConfig[key];
-        document.getElementById('adr-' + key + '-val').textContent = adrConfig[key];
-    }
-    document.getElementById('result-adr').classList.remove('show');
-}
-
-function closeResult(os) {
-    document.getElementById('result-' + os).classList.remove('show');
-}
-
-// ===== ÁP DỤNG =====
-function applyConfig() {
-    const os = document.getElementById('panel-ios').classList.contains('active') ? 'iOS' : 'Android';
-    const config = os === 'iOS' ? iosConfig : adrConfig;
-    alert('⚡ ĐÃ ÁP DỤNG ĐỘ NHẠY ' + os + '\n\n' +
-          'General: ' + config.general + '\n' +
-          'Red Dot: ' + config.reddot + '\n' +
-          '2x Scope: ' + config['2x'] + '\n' +
-          '4x Scope: ' + config['4x'] + '\n' +
-          'AWM Scope: ' + config.awm + '\n\n' +
-          '👉 Vào game chỉnh theo thông số này!');
-}
-</script>
-
+        // Hàm xử lý nút Apply (Mở App Store)
+        function applyConfig(url, btnElement) {
+            const originalText = btnElement.innerText;
+            btnElement.innerText = "ĐANG ÁP DỤNG...";
+            setTimeout(() => {
+                btnElement.innerText = originalText;
+                window.location.href = url; 
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
