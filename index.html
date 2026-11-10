@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HEADLOCK PREMIUM</title>
+    <title>HEADLOCK MENU</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -14,141 +14,100 @@
             color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px;
         }
 
-        /* --- MÀN HÌNH LOGIN --- */
-        #login-screen { width: 100%; max-width: 400px; display: flex; flex-direction: column; align-items: center; margin-top: 50px; }
+        #menu-screen { width: 100%; max-width: 400px; display: flex; flex-direction: column; align-items: center; margin-top: 20px; margin-bottom: 50px; }
+        .header-title { font-size: 28px; font-weight: 900; margin-bottom: 20px; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255, 0, 0, 0.4); }
         
-        /* Khung Avatar vẽ bằng SVG */
-        .avatar-container {
-            width: 130px; height: 130px;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            margin-bottom: 30px;
-            position: relative;
-            background-color: #0a0a0a;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+        .main-card { 
+            width: 100%; background-color: #121212; border-radius: 20px; border: 1px solid #2a2a2a; padding: 10px 20px; margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
-        /* Vòng tròn đỏ nét đứt */
-        .avatar-ring {
-            position: absolute;
-            width: 150px; height: 150px;
-            border: 1.5px dashed #ff0033;
-            border-radius: 50%;
-            animation: spin 15s linear infinite;
-        }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        /* Icon bên trong */
-        .avatar-icon {
-            width: 100px; height: 100px;
-            color: #fff;
-        }
-
-        .title-login { font-size: 24px; font-weight: 900; margin-bottom: 20px; color: #fff; letter-spacing: 1px; }
         
-        input { width: 100%; padding: 15px; background: #1a1a1a; border: 1px solid #333; border-radius: 30px; color: white; text-align: center; margin-bottom: 15px; font-size: 16px; outline: none; }
-        button { width: 100%; padding: 15px; background: #007aff; color: white; border: none; border-radius: 30px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 0 15px rgba(0, 122, 255, 0.4); }
-
-        /* --- MÀN HÌNH MENU --- */
-        #menu-screen { display: none; width: 100%; max-width: 400px; flex-direction: column; align-items: center; }
-        .header-title { font-size: 24px; font-weight: 900; margin-bottom: 20px; letter-spacing: 2px; }
-        .main-card { width: 100%; background-color: #121212; border-radius: 20px; border: 1px solid #2a2a2a; padding: 10px 20px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .row-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #222; }
+        .row-item { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #222; }
         .row-item:last-child { border-bottom: none; }
         .row-info { display: flex; align-items: center; gap: 15px; }
         .row-icon { font-size: 18px; }
         .row-title { font-size: 15px; font-weight: 600; letter-spacing: 1px; }
         
+        /* Nút gạt tròn */
         .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
         .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #007aff; }
+        input:checked + .slider { background-color: #ff0033; } 
         input:checked + .slider:before { transform: translateX(22px); }
 
-        .starting-text { font-size: 14px; font-weight: 700; letter-spacing: 2px; color: #888; margin-bottom: 10px; text-transform: uppercase; }
-        .on-off-container { width: 100%; display: flex; border-radius: 15px; overflow: hidden; border: 1px solid #333; margin-bottom: 30px; }
-        .btn-on, .btn-off { flex: 1; padding: 15px; text-align: center; font-size: 18px; font-weight: 900; cursor: pointer; transition: 0.3s; }
+        /* Nút Tăng Tốc (Dạng chữ bấm vào) */
+        .btn-speed {
+            background-color: #ff0033; color: white; border: none; padding: 8px 15px; border-radius: 10px;
+            font-size: 12px; font-weight: 800; cursor: pointer; box-shadow: 0 0 10px rgba(255,0,51,0.4);
+        }
+        .btn-speed:active { transform: scale(0.95); }
+
+        /* Thanh ON/OFF */
+        .starting-text { font-size: 14px; font-weight: 700; letter-spacing: 2px; color: #888; margin-bottom: 15px; text-transform: uppercase; align-self: flex-start; }
+        .on-off-container { width: 100%; display: flex; border-radius: 15px; overflow: hidden; border: 1px solid #333; margin-bottom: 20px; }
+        .btn-on, .btn-off { flex: 1; padding: 18px; text-align: center; font-size: 18px; font-weight: 900; cursor: pointer; transition: 0.3s; }
         .btn-on { background-color: #555; color: white; }
         .btn-off { background-color: #ff0000; color: white; }
         .btn-on.active { background-color: #00ff88; color: black; }
 
-        #modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 9999; }
-        .modal-box { background-color: #1a1a1a; padding: 25px; border-radius: 20px; width: 85%; max-width: 350px; text-align: center; position: relative; border: 1px solid #333; }
-        .modal-title { font-size: 20px; font-weight: 800; color: #007aff; margin-bottom: 15px; }
+        /* --- POPUP TĂNG TỐC --- */
+        #speed-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 9999; }
+        .modal-box { background-color: #1a1a1a; padding: 25px; border-radius: 20px; width: 85%; max-width: 350px; text-align: center; border: 1px solid #333; position: relative; }
+        .modal-title { font-size: 20px; font-weight: 800; color: #ff0033; margin-bottom: 15px; }
+        .modal-box input { width: 100%; padding: 15px; background: #050505; border: 1px solid #333; border-radius: 10px; color: white; text-align: center; margin-bottom: 15px; font-size: 18px; outline: none; font-weight: bold; }
+        .modal-box button { width: 100%; padding: 15px; background: #ff0033; color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer; }
         .close-btn { position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #888; }
+
     </style>
 </head>
 <body>
 
-    <div id="modal">
+    <!-- Popup Nhập Tốc Độ -->
+    <div id="speed-modal">
         <div class="modal-box">
-            <span class="close-btn" onclick="closeModal()">✕</span>
-            <div class="modal-title" id="modal-title">YÊU CẦU KEY</div>
-            <input type="text" id="modal-key-input" placeholder="Nhập Key...">
-            <button onclick="verifyConfig()">TẢI CẤU HÌNH</button>
+            <span class="close-btn" onclick="closeSpeedModal()">✕</span>
+            <div class="modal-title">TĂNG TỐC BẮN</div>
+            <input type="number" id="speed-input" placeholder="Nhập tốc độ (VD: 100)...">
+            <button onclick="applySpeed()">ÁP DỤNG</button>
         </div>
-    </div>
-
-    <div id="login-screen">
-        <!-- Khung Avatar SVG -->
-        <div class="avatar-container">
-            <div class="avatar-ring"></div>
-            <svg class="avatar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Icon mặt nạ / đầu lâu -->
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#fff"/>
-                <circle cx="9" cy="10" r="1.5" fill="#ff0033"/>
-                <circle cx="15" cy="10" r="1.5" fill="#ff0033"/>
-                <path d="M8 15h8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                <!-- Tâm ngắm ở giữa -->
-                <circle cx="12" cy="12" r="5" stroke="#ff0033" stroke-width="1" stroke-dasharray="2 2"/>
-                <line x1="12" y1="4" x2="12" y2="8" stroke="#ff0033" stroke-width="1"/>
-                <line x1="12" y1="16" x2="12" y2="20" stroke="#ff0033" stroke-width="1"/>
-            </svg>
-        </div>
-        
-        <div class="title-login">KEY LOGIN</div>
-        <input type="text" id="main-key" placeholder="Nhập Key tổng...">
-        <button onclick="login()">LOGIN</button>
     </div>
 
     <div id="menu-screen">
         <div class="header-title">HEADLOCK</div>
         
+        <!-- KHỐI 1: CÁC NÚT CƠ BẢN CŨ -->
         <div class="main-card">
-            <div class="row-item"><div class="row-info"><span class="row-icon">🎯</span><span class="row-title">REG FILES</span></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+            <div class="row-item"><div class="row-info"><span class="row-icon">🎯</span><span class="row-title">REG FILES</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
             <div class="row-item"><div class="row-info"><span class="row-icon">🚀</span><span class="row-title">BOST RAM</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
             <div class="row-item"><div class="row-info"><span class="row-icon">💀</span><span class="row-title">HEADLOCK</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
-            <div class="row-item"><div class="row-info"><span class="row-icon">⚙️</span><span class="row-title">FIX RUNG</span></div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+            <div class="row-item"><div class="row-info"><span class="row-icon">⚙️</span><span class="row-title">FIX RUNG</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
         </div>
 
+        <!-- KHỐI 2: CÁC NÚT MỚI THÊM -->
+        <div class="main-card">
+            <div class="row-item"><div class="row-info"><span class="row-icon">🎯</span><span class="row-title">Smooth Lock</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+            <div class="row-item"><div class="row-info"><span class="row-icon">🔒</span><span class="row-title">Reglock</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+            <div class="row-item"><div class="row-info"><span class="row-icon">🪶</span><span class="row-title">Nhẹ Tâm</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+            <div class="row-item"><div class="row-info"><span class="row-icon">💀</span><span class="row-title">Bám Đầu</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
+            
+            <!-- Nút Tăng Tốc (Mở Popup) -->
+            <div class="row-item">
+                <div class="row-info"><span class="row-icon">⚡</span><span class="row-title">Tăng Tốc Nút Bắn</span></div>
+                <button class="btn-speed" onclick="openSpeedModal()">NHẬP</button>
+            </div>
+        </div>
+
+        <!-- KHỐI 3: THANH ON/OFF -->
         <div class="starting-text">STARTING FILES</div>
         <div class="on-off-container">
             <div class="btn-on active" id="btn-on" onclick="toggleStart('on')">ON</div>
             <div class="btn-off" id="btn-off" onclick="toggleStart('off')">OFF</div>
         </div>
-
-        <div class="main-card">
-            <div class="row-item"><span class="row-title">HEADLOCK V1</span><label class="switch"><input type="checkbox" onchange="openModal('V1', this)"><span class="slider"></span></label></div>
-            <div class="row-item"><span class="row-title">HEADLOCK V2</span><label class="switch"><input type="checkbox" onchange="openModal('V2', this)"><span class="slider"></span></label></div>
-            <div class="row-item"><span class="row-title">HEADLOCK V3</span><label class="switch"><input type="checkbox" onchange="openModal('V3', this)"><span class="slider"></span></label></div>
-            <div class="row-item"><span class="row-title">HEADLOCK V4</span><label class="switch"><input type="checkbox" onchange="openModal('V4', this)"><span class="slider"></span></label></div>
-            <div class="row-item"><span class="row-title">HEADLOCK V5</span><label class="switch"><input type="checkbox" onchange="openModal('V5', this)"><span class="slider"></span></label></div>
-        </div>
     </div>
 
     <script>
-        const MAIN_KEY = "12865391-981628-id";
-        const KEYS = { "V1": "128910-179929", "V2": "163781-18298", "V3": "193619-19278", "V4": "81737-71738", "V5": "19361929" };
-        let currentVer = null, currentSwitch = null;
-
-        function login() {
-            if (document.getElementById('main-key').value.trim() === MAIN_KEY) {
-                document.getElementById('login-screen').style.display = 'none';
-                document.getElementById('menu-screen').style.display = 'flex';
-            } else { alert("Sai Key tổng!"); }
-        }
-
+        // 1. Logic bật/tắt thanh ON/OFF
         function toggleStart(status) {
             const btnOn = document.getElementById('btn-on');
             const btnOff = document.getElementById('btn-off');
@@ -161,33 +120,28 @@
             }
         }
 
-        function openModal(version, checkbox) {
-            if (checkbox.checked) {
-                currentVer = version; currentSwitch = checkbox;
-                document.getElementById('modal-title').innerText = `HEADLOCK ${version}`;
-                document.getElementById('modal-key-input').value = '';
-                document.getElementById('modal').style.display = 'flex';
+        // 2. Logic Popup Tăng Tốc
+        function openSpeedModal() {
+            document.getElementById('speed-input').value = ''; // Xóa ô nhập cũ
+            document.getElementById('speed-modal').style.display = 'flex';
+        }
+
+        function closeSpeedModal() {
+            document.getElementById('speed-modal').style.display = 'none';
+        }
+
+        function applySpeed() {
+            const speedValue = document.getElementById('speed-input').value;
+            if (speedValue.trim() === "") {
+                alert("Vui lòng nhập số tốc độ!");
+                return;
             }
-        }
-
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-            if (currentSwitch) { currentSwitch.checked = false; currentSwitch = null; }
-        }
-
-        function verifyConfig() {
-            if (document.getElementById('modal-key-input').value.trim() === KEYS[currentVer]) {
-                document.getElementById('modal').style.display = 'none';
-                downloadConfig(currentVer);
-            } else { alert("Sai Key cấu hình!"); }
-        }
-
-        function downloadConfig(version) {
-            let xml = `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>PayloadContent</key><array><dict><key>PayloadType</key><string>com.apple.Accessibility</string><key>PayloadVersion</key><integer>1</integer><key>PayloadIdentifier</key><string>com.ultimate.touch</string><key>PayloadUUID</key><string>F1A2B3C4-D5E6-4F7A-8B9C-0D1E2F3A4B5C</string><key>PayloadDisplayName</key><string>Touch</string><key>TouchAccommodations</key><dict><key>Enabled</key><true/><key>HoldDuration</key><real>1.25</real><key>TapTimeout</key><real>2.00</real><key>IgnoreRepeat</key><true/><key>TapAssistance</key><string>FollowFinger</string><key>GlideSpeed</key><string>InstantLock</string><key>PointerPrecision</key><string>Maximum</string></dict></dict><dict><key>PayloadType</key><string>com.apple.unknown.data</string><key>PayloadVersion</key><integer>1</integer><key>PayloadIdentifier</key><string>com.ultimate.gesture.${version}</string><key>PayloadUUID</key><string>D0000000-1111-2222-3333-444444444444</string><key>PayloadDisplayName</key><string>Gesture Simulation</string><key>GestureSimulation</key><dict><key>Enabled</key><true/><key>Mode</key><string>ultimate_head_lock</string><key>TargetLock</key><string>head_100_percent</string><key>ChestLockDisable</key><true/><key>HeadLockPriority</key><integer>100</integer><key>ForceHeadValue</key><integer>100</integer><key>SwipeAcceleration</key><integer>0</integer><key>OvershootProtection</key><true/><key>JitterReduction</key><true/><key>DragPower</key><real>0.001</real><key>AimDragSpeed</key><real>5.0</real><key>SwipeSpeed</key><real>45.0</real><key>SwipeSmoothing</key><integer>5</integer><key>TouchZone</key><string>RightEdge</string><key>CornerPrecision</key><integer>300</integer><key>MagneticPull</key><true/><key>StickyAim</key><true/><key>SnapRadius</key><integer>800</integer><key>SnapStrength</key><integer>100</integer></dict></dict></array><key>PayloadDisplayName</key><string>Headlock ${version}</string><key>PayloadIdentifier</key><string>com.ultimate.${version}</string><key>PayloadType</key><string>Configuration</string><key>PayloadUUID</key><string>A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D</string><key>PayloadVersion</key><integer>1</integer></dict></plist>`;
             
-            let blob = new Blob([xml], { type: 'application/x-apple-aspen-config' });
-            let a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `Headlock_${version}.mobileconfig`; a.click();
-            alert(`Đã tải ${version}. Vào Cài đặt > Đã tải xuống > Cài đặt.`);
+            // Hiển thị thông báo thành công
+            alert(`Áp dụng thành công tốc độ: ${speedValue}`);
+            
+            // Đóng bảng
+            closeSpeedModal();
         }
     </script>
 </body>
