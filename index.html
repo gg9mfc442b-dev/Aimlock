@@ -89,6 +89,32 @@ body:after{display:none!important;animation:none!important}
 .toast,.modal-backdrop{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 button,input,textarea{font-size:16px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Launch progress overlay: lightweight CSS, no backdrop blur or large filters. */
+.launch-backdrop{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.88)}
+.launch-backdrop.show{display:flex}
+.launch-panel{width:min(100%,440px);max-height:86vh;overflow:auto;background:#090510;border:1px solid #a855f7;border-radius:18px;padding:20px;box-shadow:0 0 0 1px #e879f955,0 0 22px #7e22ce66}
+.launch-kicker{font-size:10px;letter-spacing:2px;color:#d8a0ff;font-weight:900}
+.launch-panel h2{font-size:22px;margin:8px 0;color:#f5eaff}
+.launch-sub,.launch-foot{color:#b9a8ca;font-size:13px;line-height:1.5}
+.progress-head{display:flex;justify-content:space-between;gap:10px;margin:18px 0 8px;font-size:10px;letter-spacing:1px;color:#d7c2eb}
+.progress-head strong{color:#f0abfc;font-size:14px}
+.progress-track{height:11px;border-radius:20px;background:#24152f;border:1px solid #59317a;overflow:hidden}
+.progress-track>div{height:100%;width:1%;border-radius:inherit;background:linear-gradient(90deg,#7e22ce,#c084fc,#f5d0fe);box-shadow:0 0 10px #c084fc;transition:width .12s linear}
+.launch-list{display:grid;gap:7px;margin-top:16px}
+.launch-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px solid #352044;border-radius:9px;background:#100a18;color:#d9c9e8;font-size:12px}
+.launch-item .launch-state{margin-left:auto;color:#a995ba;font-size:11px;white-space:nowrap}
+.launch-item.running{border-color:#a855f7;box-shadow:inset 0 0 12px #7e22ce22;color:#fff}
+.launch-item.done{border-color:#6d3a91}
+.launch-spinner{width:15px;height:15px;border:2px solid #57346e;border-top-color:#f0abfc;border-radius:50%;animation:launchSpin .7s linear infinite;flex:none}
+.launch-check{width:17px;height:17px;border-radius:50%;display:grid;place-items:center;background:#7132a0;color:white;font-weight:900;flex:none}
+.launch-skip{color:#9d8eaa;font-size:10px}
+@keyframes launchSpin{to{transform:rotate(360deg)}}
+.launch-close{width:100%;margin-top:14px}
+.launch-close:disabled{opacity:.45}
+.boost-module{border-color:#7540a4}
+@media(prefers-reduced-motion:reduce){.launch-spinner{animation:none}.progress-track>div{transition:none}}
+
 </style>
 </head>
 <body><main class="wrap">
@@ -114,19 +140,32 @@ button,input,textarea{font-size:16px;touch-action:manipulation;-webkit-tap-highl
 <section class="card"><h2>◈ MODULE TÙY CHỌN</h2><div class="modules">
 <div class="module">AIMLOCK <button class="switch" type="button" aria-label="Bật tắt Aimlock" aria-pressed="false"></button></div>
 <div class="module">NHẸ TÂM <button class="switch" type="button" aria-label="Bật tắt Nhẹ tâm" aria-pressed="false"></button></div>
-<div class="module">RUNG ĐẦU <button class="switch" type="button" aria-label="Bật tắt Rung đầu" aria-pressed="false"></button></div>
 <div class="module">NHẠY TÂM <button class="switch" type="button" aria-label="Bật tắt Nhạy tâm" aria-pressed="false"></button></div>
 <div class="module">FIX RUNG <button class="switch" type="button" aria-label="Bật tắt Fix rung" aria-pressed="false"></button></div>
 <div class="module">FIX RECOIL <button class="switch" type="button" aria-label="Bật tắt Fix recoil" aria-pressed="false"></button></div>
 <div class="module">LOCKHEAD <button class="switch" type="button" aria-label="Bật tắt Lockhead" aria-pressed="false"></button></div>
 <div class="module">AI OPTIMAL <button class="switch" type="button" aria-label="Bật tắt AI optimal" aria-pressed="false"></button></div>
+<div class="module boost-module">BOOST RAM 🚀 <button title="Chỉ mô phỏng trạng thái trong giao diện; không giải phóng RAM hệ thống" class="switch" type="button" aria-label="Bật tắt Boost RAM (mô phỏng giao diện)" aria-pressed="false"></button></div>
 </div><p class="hint">Các công tắc mặc định đều TẮT. Nhấn vào từng công tắc để bật hoặc tắt trong giao diện.</p></section>
 <section class="card"><h2>◈ THAO TÁC NHANH</h2><div class="actions">
 <button class="action" id="apply">✦ ÁP DỤNG PROFILE</button><button class="action" id="reset">↻ ĐẶT LẠI</button>
 <button class="action" id="save">▣ LƯU CẤU HÌNH</button><button class="action" id="report">⌁ KIỂM TRA</button>
 </div></section>
 <section class="card"><h2>◈ SYSTEM CONSOLE</h2><div class="signal-meter" aria-label="Animated interface signal"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="log" id="log"><div>Interface initialized successfully</div><div>All optional modules are OFF</div><div>Enter a device name to get a suggested preset</div></div></section>
-</div><footer class="footer"><span>© 𝑨𝒗𝒆𝒓𝒕𝒆𝒙 𝟐.𝟎 · DEMO UI</span><span>LOCAL HTML · NO GAME MODIFICATION</span></footer></main><div class="toast" id="toast"></div><div class="modal-backdrop" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><h3 id="modalTitle">Tinh chỉnh lại sao cho hợp máy?</h3><p id="modalMessage">Hệ thống sẽ điều chỉnh độ nhạy dựa trên đánh giá của bạn.</p><div class="modal-actions"><button class="action" id="cancelTune" style="background:#352541">✕</button><button class="action" id="confirmTune">OK</button></div></div></div>
+</div><footer class="footer"><span>© 𝑨𝒗𝒆𝒓𝒕𝒆𝒙 𝟐.𝟎 · DEMO UI</span><span>LOCAL HTML · NO GAME MODIFICATION</span></footer></main>
+<div class="launch-backdrop" id="launchOverlay" role="dialog" aria-modal="true" aria-labelledby="launchTitle" aria-hidden="true">
+ <section class="launch-panel">
+  <div class="launch-kicker">AVERTEX 2.0 · LOCAL DEMO</div>
+  <h2 id="launchTitle">Đang áp dụng trick</h2>
+  <p class="launch-sub" id="launchStatus">Đang chuẩn bị các module…</p>
+  <div class="progress-head"><span>TIẾN TRÌNH KHỞI CHẠY</span><strong id="launchPercent">1%</strong></div>
+  <div class="progress-track"><div id="launchBar"></div></div>
+  <div class="launch-list" id="launchList"></div>
+  <p class="launch-foot" id="launchFoot">Vui lòng giữ trang mở trong lúc mô phỏng khởi chạy.</p>
+  <button class="action launch-close" id="launchClose" type="button" disabled>HOÀN TẤT</button>
+ </section>
+</div>
+<div class="toast" id="toast"></div><div class="modal-backdrop" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><h3 id="modalTitle">Tinh chỉnh lại sao cho hợp máy?</h3><p id="modalMessage">Hệ thống sẽ điều chỉnh độ nhạy dựa trên đánh giá của bạn.</p><div class="modal-actions"><button class="action" id="cancelTune" style="background:#352541">✕</button><button class="action" id="confirmTune">OK</button></div></div></div>
 <script>
 const $=s=>document.querySelector(s), log=$('#log'), toast=$('#toast');
 const defaults={general:155,red:150,scope:148,sniper:140,aim:158};
@@ -239,8 +278,40 @@ function makePreset(name){
 }
 $('#suggest').onclick=()=>{const name=$('#deviceName').value.trim();if(!name){pop('Hãy nhập tên thiết bị trước');$('#deviceName').focus();return}const p=makePreset(name);setValues(p);$('#deviceStat').textContent=name.length>13?name.slice(0,12)+'…':name;$('#statusStat').textContent='SUGGESTED';$('#suggestHint').textContent='Đã tạo bộ gợi ý tham khảo cho '+name+'. Hãy thử trong phòng tập và tinh chỉnh theo cảm giác kéo tâm.';burst('SENSITIVITY PRESET GENERATED · '+name);pop('Đã đề xuất độ nhạy cho '+name)};
 $('#deviceName').addEventListener('keydown',e=>{if(e.key==='Enter')$('#suggest').click()});
-$('#apply').onclick=()=>{$('#statusStat').textContent='ACTIVE';burst('AVERTEX PROFILE APPLY · LOCAL DEMO');pop('Áp dụng thành công')};
-$('#reset').onclick=()=>{setValues(defaults);document.querySelectorAll('.switch').forEach(b=>{b.classList.remove('on');b.setAttribute('aria-pressed','false')});$('#statusStat').textContent='READY';burst('RESET · DEFAULT PROFILE RESTORED');pop('Đã đặt lại · mọi module đang tắt')};
+let launchTimer=null;
+function beginLaunch(){
+ if(launchTimer!==null)return;
+ const overlay=$('#launchOverlay'),list=$('#launchList'),bar=$('#launchBar'),pct=$('#launchPercent'),status=$('#launchStatus'),close=$('#launchClose');
+ const modules=[...document.querySelectorAll('.module')].map(el=>({name:el.childNodes[0].textContent.trim(),enabled:el.querySelector('.switch').classList.contains('on')}));
+ list.innerHTML='';
+ modules.forEach((m,i)=>{const row=document.createElement('div');row.className='launch-item';row.dataset.index=String(i);row.innerHTML='<span class="launch-spinner" aria-hidden="true"></span><strong></strong><span class="launch-state">Đang chờ</span>';row.querySelector('strong').textContent=m.name;list.appendChild(row);});
+ overlay.classList.add('show');overlay.setAttribute('aria-hidden','false');close.disabled=true;close.textContent='ĐANG KHỞI CHẠY…';
+ bar.style.width='1%';pct.textContent='1%';status.textContent='Đang áp dụng trick · khởi tạo giao diện…';
+ $('#statusStat').textContent='STARTING';
+ const total=modules.length, duration= Math.max(3200,total*620), started=Date.now();
+ let lastStep=-1;
+ function tick(){
+  const elapsed=Date.now()-started, progress=Math.min(100,Math.max(1,Math.round(elapsed/duration*100)));
+  bar.style.width=progress+'%';pct.textContent=progress+'%';
+  const current=Math.min(total-1,Math.floor((progress/100)*total));
+  if(current!==lastStep){
+   if(lastStep>=0){const prev=list.children[lastStep],prevMod=modules[lastStep];prev.className='launch-item done';prev.innerHTML='<span class="launch-check">✓</span><strong></strong><span class="launch-state"></span>';prev.querySelector('strong').textContent=prevMod.name;prev.querySelector('.launch-state').textContent=prevMod.enabled?'SẴN SÀNG':'ĐÃ KIỂM TRA · OFF';}
+   const row=list.children[current];if(row){row.className='launch-item running';row.querySelector('.launch-state').textContent=modules[current].enabled?'Đang khởi chạy…':'Đang kiểm tra…';}
+   lastStep=current;status.textContent=modules[current].enabled?'Đang khởi chạy '+modules[current].name+'…':'Đang kiểm tra '+modules[current].name+'…';
+  }
+  if(progress<100){launchTimer=requestAnimationFrame(tick);}
+  else{
+   modules.forEach((m,i)=>{const row=list.children[i];row.className='launch-item done';row.innerHTML='<span class="launch-check">✓</span><strong></strong><span class="launch-state"></span>';row.querySelector('strong').textContent=m.name;row.querySelector('.launch-state').textContent=m.enabled?'SẴN SÀNG':'ĐÃ KIỂM TRA · OFF';});
+   launchTimer=null;status.textContent='Hoàn tất khởi chạy giao diện Avertex 2.0.';$('#statusStat').textContent='READY';close.disabled=false;close.textContent='HOÀN TẤT';
+   note('LAUNCH SEQUENCE COMPLETE · UI DEMO ONLY');pop('Khởi chạy giao diện hoàn tất');
+  }
+ }
+ launchTimer=requestAnimationFrame(tick);
+ burst('LAUNCH SEQUENCE STARTED · UI DEMO');
+}
+$('#apply').onclick=beginLaunch;
+$('#launchClose').onclick=()=>{if(launchTimer!==null){cancelAnimationFrame(launchTimer);launchTimer=null;}$('#launchOverlay').classList.remove('show');$('#launchOverlay').setAttribute('aria-hidden','true');};
+$('#reset').onclick=()=>{if(launchTimer!==null){cancelAnimationFrame(launchTimer);launchTimer=null;}$('#launchOverlay').classList.remove('show');$('#launchOverlay').setAttribute('aria-hidden','true');setValues(defaults);document.querySelectorAll('.switch').forEach(b=>{b.classList.remove('on');b.setAttribute('aria-pressed','false')});$('#statusStat').textContent='READY';burst('RESET · DEFAULT PROFILE RESTORED');pop('Đã đặt lại · mọi module đang tắt')};
 $('#save').onclick=()=>{const data={device:$('#deviceName').value.trim(),values:Object.fromEntries([...document.querySelectorAll('input[type=range]')].map(x=>[x.id,+x.value])),modules:[...document.querySelectorAll('.module')].map(x=>({name:x.childNodes[0].textContent.trim(),enabled:x.querySelector('.switch').classList.contains('on')}))};const a=document.createElement('a'),u=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.href=u;a.download='sensitivity-profile-demo.json';a.click();URL.revokeObjectURL(u);burst('CONFIG EXPORT · JSON CREATED');pop('Đã xuất file JSON')};
 $('#report').onclick=()=>{burst('SYSTEM CHECK · ALL CONTROLS RESPONDING');pop('Giao diện hoạt động bình thường')};
 </script></body></html>
