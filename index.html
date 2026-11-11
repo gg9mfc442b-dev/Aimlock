@@ -1,148 +1,117 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HEADLOCK MENU</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
-        
-        body {
-            background-color: #050505;
-            background-image: radial-gradient(circle at 15% 25%, rgba(0, 170, 255, 0.15) 0%, transparent 5%), radial-gradient(circle at 85% 45%, rgba(255, 0, 85, 0.15) 0%, transparent 5%);
-            color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px;
-        }
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sensitivity Lock — Gaming Panel</title>
+<style>
+:root{--bg:#090611;--panel:#160d27;--purple:#a855f7;--pink:#e879f9;--text:#f5edff;--muted:#a99bbd;--line:#59317e}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0,#35145a 0,#10091b 40%,#07050d 100%);color:var(--text);font:14px system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;padding:22px 14px 38px}
+.wrap{max-width:980px;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.brand{font-weight:900;letter-spacing:2px;font-size:17px}.brand span{color:var(--pink)}.status{font-size:11px;color:#d7c6e9;border:1px solid var(--line);border-radius:30px;padding:7px 11px;background:#180d27}
+.hero{border:1px solid #7136a2;background:linear-gradient(135deg,#311354,#160d29 65%);border-radius:18px;padding:20px;box-shadow:0 0 35px #8b31cf25;position:relative;overflow:hidden}.eyebrow{font-size:10px;color:#d9a8ff;letter-spacing:2px;font-weight:800}.hero h1{font-size:clamp(25px,5vw,40px);margin:6px 0 3px;line-height:1.05}.hero p{color:#c4b1d7;margin:8px 0 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.stat{background:#0e081b99;border:1px solid #58317a;border-radius:12px;padding:12px}.stat small{display:block;color:var(--muted);font-size:10px}.stat b{font-size:19px;color:#e8c8ff}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:13px;margin-top:14px}.card{background:linear-gradient(160deg,#1b1030,#100a1c);border:1px solid #4d2a70;border-radius:15px;padding:15px;box-shadow:0 10px 28px #0005}.card h2{font-size:13px;letter-spacing:1px;margin:0 0 13px;color:#e8c8ff}
+.device-row{display:flex;gap:9px;margin-top:13px}.device-row input{min-width:0;flex:1;background:#10091c;color:white;border:1px solid #7540a4;border-radius:10px;padding:12px;font-size:14px;outline:none}.device-row button,.action{border:1px solid #7540a4;border-radius:10px;background:linear-gradient(135deg,#7e22ce,#4c1d75);color:white;padding:12px 14px;font-weight:800;cursor:pointer}.hint{font-size:11px;color:var(--muted);line-height:1.5;margin:9px 0 0}
+.range{margin:15px 0}.range-head{display:flex;justify-content:space-between;color:#d8c9e8;font-size:12px;margin-bottom:8px}.range output{color:#f0abfc;font-weight:800}input[type=range]{width:100%;accent-color:#c084fc;pointer-events:none;opacity:.82}input[type=range]:disabled{filter:saturate(.8)}
+.modules{display:grid;grid-template-columns:1fr 1fr;gap:9px}.module{display:flex;align-items:center;justify-content:space-between;background:#26133e;border:1px solid #60348b;padding:11px;border-radius:10px;font-size:12px;font-weight:700}.switch{width:42px;height:24px;border-radius:20px;background:#51445e;position:relative;border:0;cursor:pointer;flex:none;transition:.2s}.switch:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:white;left:3px;top:3px;transition:.2s}.switch.on{background:#9333ea}.switch.on:after{left:21px}
+.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.action{background:#170e27}.log{height:142px;overflow:auto;background:#080611;border:1px solid #43245f;border-radius:10px;padding:10px;color:#b7f7d0;font:11px ui-monospace,monospace;line-height:1.7}.log div:before{content:"› ";color:#d879ff}.wide{grid-column:1/-1}.footer{display:flex;justify-content:space-between;gap:10px;align-items:center;color:#8f80a2;font-size:10px;margin-top:14px}.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;background:#27113e;border:1px solid #a855f7;padding:10px 16px;border-radius:30px;transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}.modal-backdrop{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal-backdrop.show{display:flex}.modal{width:min(100%,380px);background:linear-gradient(150deg,#291342,#10091c);border:1px solid #a855f7;border-radius:17px;padding:20px;box-shadow:0 18px 60px #0009}.modal h3{margin:0 0 9px;color:#f0d5ff;font-size:19px}.modal p{color:#c7b5d8;line-height:1.5;margin:0 0 18px}.modal-actions{display:flex;justify-content:flex-end;gap:10px}.modal-actions button{min-width:76px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.stats{gap:7px}.stat{padding:9px}.modules{grid-template-columns:1fr 1fr}.footer{flex-direction:column;align-items:flex-start}.device-row{flex-direction:column}}
+</style></head>
+<body><main class="wrap">
+<header class="top"><div class="brand">✦ SENSITIVITY <span>LOCK</span></div><div class="status">● SYSTEM READY</div></header>
+<section class="hero"><div class="eyebrow">VERTEX FF VN · GAMING PROFILE</div><h1>SENSITIVITY LOCK 🚀</h1><p>Nhập tên thiết bị để nhận bộ thông số độ nhạy đề xuất.</p>
+<div class="device-row"><input id="deviceName" list="devices" placeholder="Ví dụ: iPhone 11 Pro Max" autocomplete="off"><datalist id="devices"><option>iPhone 11 Pro Max</option><option>iPhone 12</option><option>iPhone 13</option><option>iPhone 14</option><option>iPhone 15</option><option>iPhone 16</option><option>iPhone 17</option><option>Samsung Galaxy S</option><option>Android</option></datalist><button id="suggest">ĐỀ XUẤT</button></div>
+<p class="hint" id="suggestHint">Nhập đúng tên máy rồi nhấn ĐỀ XUẤT. Các mức gợi ý nằm trong khoảng 130–180; có thể tự chỉnh lại sau đó.</p>
+<div class="stats"><div class="stat"><small>PROFILE</small><b>GAMING</b></div><div class="stat"><small>DEVICE</small><b id="deviceStat">CHƯA CHỌN</b></div><div class="stat"><small>STATUS</small><b id="statusStat">READY</b></div></div></section>
+<div class="grid">
+<section class="card"><h2>◈ ĐỘ NHẠY ĐỀ XUẤT & ĐIỀU KHIỂN</h2>
+<div class="range"><div class="range-head"><label for="general">Độ nhạy tổng quát</label><output id="generalOut">155</output></div><input id="general" type="range" min="130" max="180" value="155" disabled></div>
+<div class="range"><div class="range-head"><label for="red">Red Dot</label><output id="redOut">150</output></div><input id="red" type="range" min="130" max="180" value="150" disabled></div>
+<div class="range"><div class="range-head"><label for="scope">Ống ngắm 2X</label><output id="scopeOut">148</output></div><input id="scope" type="range" min="130" max="180" value="148" disabled></div>
+<div class="range"><div class="range-head"><label for="sniper">Ống ngắm 4X</label><output id="sniperOut">140</output></div><input id="sniper" type="range" min="130" max="180" value="140" disabled></div>
+<div class="range"><div class="range-head"><label for="aim">Nhìn xung quanh</label><output id="aimOut">158</output></div><input id="aim" type="range" min="130" max="180" value="158" disabled></div>
+</section>
+<section class="card wide" id="feedbackCard"><h2>◈ ĐÁNH GIÁ ĐỘ NHẠY</h2>
+<p class="hint">Chơi thử trong phòng tập rồi mô tả cảm giác. Ví dụ: “nặng tâm”, “lố đầu”, “khó kéo”, hoặc “muốn bám đầu nhẹ tâm”. Hệ thống sẽ đề xuất bộ thông số mới; thanh độ nhạy không thể kéo thủ công.</p>
+<textarea id="feedback" rows="3" placeholder="Nhập đánh giá của bạn..." style="width:100%;resize:vertical;background:#10091c;color:white;border:1px solid #7540a4;border-radius:10px;padding:12px;font:inherit;outline:none"></textarea>
+<div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="action" id="evaluate">GỬI ĐÁNH GIÁ</button></div>
+<p class="hint" id="feedbackHint" aria-live="polite">Chưa có đánh giá mới.</p>
+</section>
+<section class="card"><h2>◈ MODULE TÙY CHỌN</h2><div class="modules">
+<div class="module">AIMLOCK <button class="switch" type="button" aria-label="Bật tắt Aimlock" aria-pressed="false"></button></div>
+<div class="module">NHẸ TÂM <button class="switch" type="button" aria-label="Bật tắt Nhẹ tâm" aria-pressed="false"></button></div>
+<div class="module">RUNG ĐẦU <button class="switch" type="button" aria-label="Bật tắt Rung đầu" aria-pressed="false"></button></div>
+<div class="module">NHẠY TÂM <button class="switch" type="button" aria-label="Bật tắt Nhạy tâm" aria-pressed="false"></button></div>
+<div class="module">FIX RUNG <button class="switch" type="button" aria-label="Bật tắt Fix rung" aria-pressed="false"></button></div>
+<div class="module">FIX RECOIL <button class="switch" type="button" aria-label="Bật tắt Fix recoil" aria-pressed="false"></button></div>
+<div class="module">LOCKHEAD <button class="switch" type="button" aria-label="Bật tắt Lockhead" aria-pressed="false"></button></div>
+<div class="module">AI OPTIMAL <button class="switch" type="button" aria-label="Bật tắt AI optimal" aria-pressed="false"></button></div>
+</div><p class="hint">Các công tắc mặc định đều TẮT. Nhấn vào từng công tắc để bật hoặc tắt trong giao diện.</p></section>
+<section class="card"><h2>◈ THAO TÁC NHANH</h2><div class="actions">
+<button class="action" id="apply">✦ ÁP DỤNG PROFILE</button><button class="action" id="reset">↻ ĐẶT LẠI</button>
+<button class="action" id="save">▣ LƯU CẤU HÌNH</button><button class="action" id="report">⌁ KIỂM TRA</button>
+</div></section>
+<section class="card"><h2>◈ SYSTEM CONSOLE</h2><div class="log" id="log"><div>Interface initialized successfully</div><div>All optional modules are OFF</div><div>Enter a device name to get a suggested preset</div></div></section>
+<section class="card wide"><h2>◈ LƯU Ý</h2><p class="hint">Đây là bộ gợi ý tham khảo trong giao diện HTML, không phải phép đo hay cấu hình được kiểm chứng cho từng máy. Cảm giác thực tế còn phụ thuộc phiên bản game, FPS, kích thước màn hình và thói quen kéo tâm. Trang web không thể tự thay đổi cài đặt Free Fire hoặc bật tính năng can thiệp game.</p></section>
+</div><footer class="footer"><span>© SENSITIVITY LOCK · DEMO UI</span><span>LOCAL HTML · NO GAME MODIFICATION</span></footer></main><div class="toast" id="toast"></div><div class="modal-backdrop" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><h3 id="modalTitle">Tinh chỉnh lại sao cho hợp máy?</h3><p id="modalMessage">Hệ thống sẽ điều chỉnh độ nhạy dựa trên đánh giá của bạn.</p><div class="modal-actions"><button class="action" id="cancelTune" style="background:#352541">✕</button><button class="action" id="confirmTune">OK</button></div></div></div>
+<script>
+const $=s=>document.querySelector(s), log=$('#log'), toast=$('#toast');
+const defaults={general:155,red:150,scope:148,sniper:140,aim:158};
+function note(t){const d=document.createElement('div');d.textContent=new Date().toLocaleTimeString()+' · '+t;log.prepend(d)}
+function pop(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
+function setValues(v){Object.entries(v).forEach(([id,n])=>{$('#'+id).value=n;$('#'+id+'Out').value=n})}
+// Sliders are intentionally locked: only the recommendation algorithm changes them.
+const clamp=(v)=>Math.max(130,Math.min(180,Math.round(v)));
+let pendingPreset=null;
+function tuneFromFeedback(raw){
+ const f=raw.toLowerCase();
+ const current=Object.fromEntries([...document.querySelectorAll('input[type=range]')].map(x=>[x.id,+x.value]));
+ const next={...current};
+ const heavy=/nặng tâm|nặng|khó kéo|khó rê|ì tâm/.test(f);
+ const overshoot=/lố đầu|quá đầu|văng đầu|bay đầu|quá nhạy|lố tâm/.test(f);
+ const head=/bám đầu|nhẹ tâm|kéo đầu|dính đầu/.test(f);
+ if(heavy){
+   next.general+=9; next.red+=11; next.scope+=7; next.sniper+=4; next.aim+=8;
+ }else if(overshoot){
+   next.general-=6; next.red-=12; next.scope-=9; next.sniper-=6; next.aim-=5;
+ }else if(head){
+   next.general+=5; next.red+=7; next.scope+=4; next.sniper+=2; next.aim+=5;
+ }else{
+   next.general+=2; next.red+=2; next.scope+=1; next.sniper+=1; next.aim+=2;
+ }
+ return Object.fromEntries(Object.entries(next).map(([k,v])=>[k,clamp(v)]));
+}
+function showTuneModal(){ $('#confirmModal').classList.add('show'); }
+function closeTuneModal(){ $('#confirmModal').classList.remove('show'); }
+$('#evaluate').onclick=()=>{
+ const feedback=$('#feedback').value.trim();
+ if(!feedback){pop('Hãy nhập đánh giá trước');$('#feedback').focus();return}
+ pendingPreset=tuneFromFeedback(feedback);
+ $('#modalMessage').textContent='Đánh giá: “'+feedback+'”. Nhấn OK để cập nhật bộ độ nhạy đề xuất; nhấn ✕ để giữ nguyên.';
+ showTuneModal(); note('Feedback received: '+feedback);
+};
+$('#cancelTune').onclick=()=>{pendingPreset=null;closeTuneModal();$('#feedbackHint').textContent='Đã giữ nguyên độ nhạy hiện tại.';note('User dismissed sensitivity adjustment');};
+$('#confirmTune').onclick=()=>{
+ if(pendingPreset){setValues(pendingPreset);$('#statusStat').textContent='ADJUSTED';$('#feedbackHint').textContent='Đã tinh chỉnh theo đánh giá. Hãy thử lại trong phòng tập để đánh giá tiếp.';note('Sensitivity values adjusted by feedback algorithm');pop('Đã tinh chỉnh độ nhạy')}
+ pendingPreset=null;closeTuneModal();
+};
+$('#confirmModal').addEventListener('click',e=>{if(e.target.id==='confirmModal'){$('#cancelTune').click()}});
 
-        #menu-screen { width: 100%; max-width: 400px; display: flex; flex-direction: column; align-items: center; margin-top: 20px; margin-bottom: 50px; }
-        .header-title { font-size: 28px; font-weight: 900; margin-bottom: 20px; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255, 0, 0, 0.4); }
-        
-        .main-card { 
-            width: 100%; background-color: #121212; border-radius: 20px; border: 1px solid #2a2a2a; padding: 10px 20px; margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        
-        .row-item { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #222; }
-        .row-item:last-child { border-bottom: none; }
-        .row-info { display: flex; align-items: center; gap: 15px; }
-        .row-icon { font-size: 18px; }
-        .row-title { font-size: 15px; font-weight: 600; letter-spacing: 1px; }
-        
-        /* Nút gạt tròn */
-        .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #ff0033; } 
-        input:checked + .slider:before { transform: translateX(22px); }
-
-        /* Nút Tăng Tốc (Dạng chữ bấm vào) */
-        .btn-speed {
-            background-color: #ff0033; color: white; border: none; padding: 8px 15px; border-radius: 10px;
-            font-size: 12px; font-weight: 800; cursor: pointer; box-shadow: 0 0 10px rgba(255,0,51,0.4);
-        }
-        .btn-speed:active { transform: scale(0.95); }
-
-        /* Thanh ON/OFF */
-        .starting-text { font-size: 14px; font-weight: 700; letter-spacing: 2px; color: #888; margin-bottom: 15px; text-transform: uppercase; align-self: flex-start; }
-        .on-off-container { width: 100%; display: flex; border-radius: 15px; overflow: hidden; border: 1px solid #333; margin-bottom: 20px; }
-        .btn-on, .btn-off { flex: 1; padding: 18px; text-align: center; font-size: 18px; font-weight: 900; cursor: pointer; transition: 0.3s; }
-        .btn-on { background-color: #555; color: white; }
-        .btn-off { background-color: #ff0000; color: white; }
-        .btn-on.active { background-color: #00ff88; color: black; }
-
-        /* --- POPUP TĂNG TỐC --- */
-        #speed-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 9999; }
-        .modal-box { background-color: #1a1a1a; padding: 25px; border-radius: 20px; width: 85%; max-width: 350px; text-align: center; border: 1px solid #333; position: relative; }
-        .modal-title { font-size: 20px; font-weight: 800; color: #ff0033; margin-bottom: 15px; }
-        .modal-box input { width: 100%; padding: 15px; background: #050505; border: 1px solid #333; border-radius: 10px; color: white; text-align: center; margin-bottom: 15px; font-size: 18px; outline: none; font-weight: bold; }
-        .modal-box button { width: 100%; padding: 15px; background: #ff0033; color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer; }
-        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #888; }
-
-    </style>
-</head>
-<body>
-
-    <!-- Popup Nhập Tốc Độ -->
-    <div id="speed-modal">
-        <div class="modal-box">
-            <span class="close-btn" onclick="closeSpeedModal()">✕</span>
-            <div class="modal-title">TĂNG TỐC BẮN</div>
-            <input type="number" id="speed-input" placeholder="Nhập tốc độ (VD: 100)...">
-            <button onclick="applySpeed()">ÁP DỤNG</button>
-        </div>
-    </div>
-
-    <div id="menu-screen">
-        <div class="header-title">HEADLOCK</div>
-        
-        <!-- KHỐI 1: CÁC NÚT CƠ BẢN CŨ -->
-        <div class="main-card">
-            <div class="row-item"><div class="row-info"><span class="row-icon">🎯</span><span class="row-title">REG FILES</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
-            <div class="row-item"><div class="row-info"><span class="row-icon">🚀</span><span class="row-title">BOST RAM</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
-            <div class="row-item"><div class="row-info"><span class="row-icon">💀</span><span class="row-title">HEADLOCK</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
-            <div class="row-item"><div class="row-info"><span class="row-icon">⚙️</span><span class="row-title">FIX RUNG</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
-        </div>
-
-        <!-- KHỐI 2: CÁC NÚT MỚI THÊM -->
-        <div class="main-card">
-            <div class="row-item"><div class="row-info"><span class="row-icon">🎯</span><span class="row-title">Smooth Lock</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
-            <div class="row-item"><div class="row-info"><span class="row-icon">🔒</span><span class="row-title">Reglock</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
-            <div class="row-item"><div class="row-info"><span class="row-icon">🪶</span><span class="row-title">Nhẹ Tâm</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
-            <div class="row-item"><div class="row-info"><span class="row-icon">💀</span><span class="row-title">Bám Đầu</span></div><label class="switch"><input type="checkbox"><span class="slider"></span></label></div>
-            
-            <!-- Nút Tăng Tốc (Mở Popup) -->
-            <div class="row-item">
-                <div class="row-info"><span class="row-icon">⚡</span><span class="row-title">Tăng Tốc Nút Bắn</span></div>
-                <button class="btn-speed" onclick="openSpeedModal()">NHẬP</button>
-            </div>
-        </div>
-
-        <!-- KHỐI 3: THANH ON/OFF -->
-        <div class="starting-text">STARTING FILES</div>
-        <div class="on-off-container">
-            <div class="btn-on active" id="btn-on" onclick="toggleStart('on')">ON</div>
-            <div class="btn-off" id="btn-off" onclick="toggleStart('off')">OFF</div>
-        </div>
-    </div>
-
-    <script>
-        // 1. Logic bật/tắt thanh ON/OFF
-        function toggleStart(status) {
-            const btnOn = document.getElementById('btn-on');
-            const btnOff = document.getElementById('btn-off');
-            if (status === 'on') {
-                btnOn.classList.add('active'); btnOn.style.backgroundColor = '#00ff88'; btnOn.style.color = '#000';
-                btnOff.classList.remove('active'); btnOff.style.backgroundColor = '#555';
-            } else {
-                btnOff.classList.add('active'); btnOff.style.backgroundColor = '#ff0000';
-                btnOn.classList.remove('active'); btnOn.style.backgroundColor = '#333';
-            }
-        }
-
-        // 2. Logic Popup Tăng Tốc
-        function openSpeedModal() {
-            document.getElementById('speed-input').value = ''; // Xóa ô nhập cũ
-            document.getElementById('speed-modal').style.display = 'flex';
-        }
-
-        function closeSpeedModal() {
-            document.getElementById('speed-modal').style.display = 'none';
-        }
-
-        function applySpeed() {
-            const speedValue = document.getElementById('speed-input').value;
-            if (speedValue.trim() === "") {
-                alert("Vui lòng nhập số tốc độ!");
-                return;
-            }
-            
-            // Hiển thị thông báo thành công
-            alert(`Áp dụng thành công tốc độ: ${speedValue}`);
-            
-            // Đóng bảng
-            closeSpeedModal();
-        }
-    </script>
-</body>
-</html>
+document.querySelectorAll('.switch').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('on');b.setAttribute('aria-pressed',b.classList.contains('on')?'true':'false');note(b.parentElement.childNodes[0].textContent.trim()+(b.classList.contains('on')?' enabled':' disabled'))}));
+// Stable, conservative starter presets for common device families; unknown names use a neutral fallback.
+function makePreset(name){
+ const n=name.toLowerCase();
+ if(n.includes('11 pro max')) return {general:158,red:154,scope:149,sniper:142,aim:160};
+ if(n.includes('iphone 12')) return {general:157,red:153,scope:148,sniper:141,aim:159};
+ if(n.includes('iphone 13')) return {general:156,red:152,scope:147,sniper:141,aim:158};
+ if(n.includes('iphone 14')) return {general:155,red:151,scope:147,sniper:140,aim:158};
+ if(n.includes('iphone 15')||n.includes('iphone 16')||n.includes('iphone 17')) return {general:154,red:150,scope:146,sniper:140,aim:157};
+ if(n.includes('iphone')) return {general:155,red:151,scope:147,sniper:140,aim:158};
+ if(n.includes('samsung')||n.includes('galaxy')) return {general:160,red:155,scope:150,sniper:143,aim:162};
+ return {general:158,red:153,scope:148,sniper:141,aim:160};
+}
+$('#suggest').onclick=()=>{const name=$('#deviceName').value.trim();if(!name){pop('Hãy nhập tên thiết bị trước');$('#deviceName').focus();return}const p=makePreset(name);setValues(p);$('#deviceStat').textContent=name.length>13?name.slice(0,12)+'…':name;$('#statusStat').textContent='SUGGESTED';$('#suggestHint').textContent='Đã tạo bộ gợi ý tham khảo cho '+name+'. Hãy thử trong phòng tập và tinh chỉnh theo cảm giác kéo tâm.';note('Suggested sensitivity preset for '+name);pop('Đã đề xuất độ nhạy cho '+name)};
+$('#deviceName').addEventListener('keydown',e=>{if(e.key==='Enter')$('#suggest').click()});
+$('#apply').onclick=()=>{$('#statusStat').textContent='ACTIVE';note('Profile applied to this demo interface only');pop('Đã áp dụng trong giao diện demo')};
+$('#reset').onclick=()=>{setValues(defaults);document.querySelectorAll('.switch').forEach(b=>{b.classList.remove('on');b.setAttribute('aria-pressed','false')});$('#statusStat').textContent='READY';note('Default values restored; all modules OFF');pop('Đã đặt lại · mọi module đang tắt')};
+$('#save').onclick=()=>{const data={device:$('#deviceName').value.trim(),values:Object.fromEntries([...document.querySelectorAll('input[type=range]')].map(x=>[x.id,+x.value])),modules:[...document.querySelectorAll('.module')].map(x=>({name:x.childNodes[0].textContent.trim(),enabled:x.querySelector('.switch').classList.contains('on')}))};const a=document.createElement('a'),u=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.href=u;a.download='sensitivity-profile-demo.json';a.click();URL.revokeObjectURL(u);note('Configuration exported');pop('Đã xuất file JSON')};
+$('#report').onclick=()=>{note('Interface check completed · all values in 130–180');pop('Giao diện hoạt động bình thường')};
+</script></body></html>
