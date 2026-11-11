@@ -4,14 +4,14 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sensitivity Lock — Gaming Panel</title>
 <style>
-:root{--bg:#090611;--panel:#160d27;--purple:#a855f7;--pink:#e879f9;--text:#f5edff;--muted:#a99bbd;--line:#59317e}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0,#35145a 0,#10091b 40%,#07050d 100%);color:var(--text);font:14px system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;padding:22px 14px 38px}
-.wrap{max-width:980px;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.brand{font-weight:900;letter-spacing:2px;font-size:17px}.brand span{color:var(--pink)}.status{font-size:11px;color:#d7c6e9;border:1px solid var(--line);border-radius:30px;padding:7px 11px;background:#180d27}
-.hero{border:1px solid #7136a2;background:linear-gradient(135deg,#311354,#160d29 65%);border-radius:18px;padding:20px;box-shadow:0 0 35px #8b31cf25;position:relative;overflow:hidden}.eyebrow{font-size:10px;color:#d9a8ff;letter-spacing:2px;font-weight:800}.hero h1{font-size:clamp(25px,5vw,40px);margin:6px 0 3px;line-height:1.05}.hero p{color:#c4b1d7;margin:8px 0 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.stat{background:#0e081b99;border:1px solid #58317a;border-radius:12px;padding:12px}.stat small{display:block;color:var(--muted);font-size:10px}.stat b{font-size:19px;color:#e8c8ff}
-.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:13px;margin-top:14px}.card{background:linear-gradient(160deg,#1b1030,#100a1c);border:1px solid #4d2a70;border-radius:15px;padding:15px;box-shadow:0 10px 28px #0005}.card h2{font-size:13px;letter-spacing:1px;margin:0 0 13px;color:#e8c8ff}
-.device-row{display:flex;gap:9px;margin-top:13px}.device-row input{min-width:0;flex:1;background:#10091c;color:white;border:1px solid #7540a4;border-radius:10px;padding:12px;font-size:14px;outline:none}.device-row button,.action{border:1px solid #7540a4;border-radius:10px;background:linear-gradient(135deg,#7e22ce,#4c1d75);color:white;padding:12px 14px;font-weight:800;cursor:pointer}.hint{font-size:11px;color:var(--muted);line-height:1.5;margin:9px 0 0}
-.range{margin:15px 0}.range-head{display:flex;justify-content:space-between;color:#d8c9e8;font-size:12px;margin-bottom:8px}.range output{color:#f0abfc;font-weight:800}input[type=range]{width:100%;accent-color:#c084fc;pointer-events:none;opacity:.82}input[type=range]:disabled{filter:saturate(.8)}
-.modules{display:grid;grid-template-columns:1fr 1fr;gap:9px}.module{display:flex;align-items:center;justify-content:space-between;background:#26133e;border:1px solid #60348b;padding:11px;border-radius:10px;font-size:12px;font-weight:700}.switch{width:42px;height:24px;border-radius:20px;background:#51445e;position:relative;border:0;cursor:pointer;flex:none;transition:.2s}.switch:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:white;left:3px;top:3px;transition:.2s}.switch.on{background:#9333ea}.switch.on:after{left:21px}
+:root{--bg:#090611;--panel:#160d27;--purple:#a855f7;--pink:#e879f9;--text:#f5edff;--muted:#a99bbd;--line:#482765}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0,#241039 0,#0b0712 40%,#050409 100%);color:var(--text);font:14px system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;padding:22px 14px 38px}
+.wrap{max-width:980px;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.brand{font-weight:900;letter-spacing:2px;font-size:17px}.brand span{color:var(--pink)}.status{font-size:11px;color:#d7c6e9;border:1px solid var(--line);border-radius:30px;padding:7px 11px;background:#10091b}
+.hero{border:1px solid #7136a2;background:linear-gradient(135deg,#1b102b,#0c0814 72%);border-radius:18px;padding:20px;box-shadow:0 0 35px #8b31cf25;position:relative;overflow:hidden}.eyebrow{font-size:10px;color:#d9a8ff;letter-spacing:2px;font-weight:800}.hero h1{font-size:clamp(25px,5vw,40px);margin:6px 0 3px;line-height:1.05}.hero p{color:#c4b1d7;margin:8px 0 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.stat{background:#0e081b99;border:1px solid #58317a;border-radius:12px;padding:12px}.stat small{display:block;color:var(--muted);font-size:10px}.stat b{font-size:19px;color:#e8c8ff}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:13px;margin-top:14px}.card{position:relative;isolation:isolate;background:linear-gradient(160deg,#140c20,#0b0712);border:1px solid #3b2255;border-radius:15px;padding:15px;box-shadow:0 10px 28px #0005;overflow:hidden}.card:before{content:'';position:absolute;inset:-2px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--spin,0deg),transparent 0 58%,#9b4de0 70%,#e879f9 78%,transparent 90%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:-1;animation:frameSpin 7s linear infinite;pointer-events:none}@property --spin{syntax:'<angle>';inherits:false;initial-value:0deg}@keyframes frameSpin{to{--spin:360deg}}.card h2{font-size:13px;letter-spacing:1px;margin:0 0 13px;color:#e8c8ff}
+.device-row{display:flex;gap:9px;margin-top:13px}.device-row input{min-width:0;flex:1;background:#090610;color:white;border:1px solid #603486;border-radius:10px;padding:12px;font-size:14px;outline:none}.device-row button,.action{border:1px solid #603486;border-radius:10px;background:linear-gradient(135deg,#7e22ce,#4c1d75);color:white;padding:12px 14px;font-weight:800;cursor:pointer}.hint{font-size:11px;color:var(--muted);line-height:1.5;margin:9px 0 0}
+.range{margin:15px 0;position:relative}.range input{transform:scaleX(-1);transform-origin:center}.range.sweep input{animation:rangeSweep .9s ease-out both}@keyframes rangeSweep{0%{filter:brightness(2);opacity:.35}100%{filter:brightness(1);opacity:.9}}.range-head{display:flex;justify-content:space-between;color:#d8c9e8;font-size:12px;margin-bottom:8px}.range output{color:#f0abfc;font-weight:800}input[type=range]{width:100%;accent-color:#c084fc;pointer-events:none;opacity:.9;direction:rtl;filter:saturate(.85)}input[type=range]:disabled{filter:saturate(.85)}
+.modules{display:grid;grid-template-columns:1fr 1fr;gap:9px}.module{display:flex;align-items:center;justify-content:space-between;background:#1b102b;border:1px solid #4a2a69;padding:11px;border-radius:10px;font-size:12px;font-weight:700}.switch{width:42px;height:24px;border-radius:20px;background:#51445e;position:relative;border:0;cursor:pointer;flex:none;transition:.2s}.switch:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:white;left:3px;top:3px;transition:.2s}.switch.on{background:#9333ea}.switch.on:after{left:21px}
 .actions{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.action{background:#170e27}.log{height:142px;overflow:auto;background:#080611;border:1px solid #43245f;border-radius:10px;padding:10px;color:#b7f7d0;font:11px ui-monospace,monospace;line-height:1.7}.log div:before{content:"› ";color:#d879ff}.wide{grid-column:1/-1}.footer{display:flex;justify-content:space-between;gap:10px;align-items:center;color:#8f80a2;font-size:10px;margin-top:14px}.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;background:#27113e;border:1px solid #a855f7;padding:10px 16px;border-radius:30px;transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}.modal-backdrop{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal-backdrop.show{display:flex}.modal{width:min(100%,380px);background:linear-gradient(150deg,#291342,#10091c);border:1px solid #a855f7;border-radius:17px;padding:20px;box-shadow:0 18px 60px #0009}.modal h3{margin:0 0 9px;color:#f0d5ff;font-size:19px}.modal p{color:#c7b5d8;line-height:1.5;margin:0 0 18px}.modal-actions{display:flex;justify-content:flex-end;gap:10px}.modal-actions button{min-width:76px}
 @media(max-width:680px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.stats{gap:7px}.stat{padding:9px}.modules{grid-template-columns:1fr 1fr}.footer{flex-direction:column;align-items:flex-start}.device-row{flex-direction:column}}
 </style></head>
@@ -31,7 +31,7 @@
 </section>
 <section class="card wide" id="feedbackCard"><h2>◈ ĐÁNH GIÁ ĐỘ NHẠY</h2>
 <p class="hint">Chơi thử trong phòng tập rồi mô tả cảm giác. Ví dụ: “nặng tâm”, “lố đầu”, “khó kéo”, hoặc “muốn bám đầu nhẹ tâm”. Hệ thống sẽ đề xuất bộ thông số mới; thanh độ nhạy không thể kéo thủ công.</p>
-<textarea id="feedback" rows="3" placeholder="Nhập đánh giá của bạn..." style="width:100%;resize:vertical;background:#10091c;color:white;border:1px solid #7540a4;border-radius:10px;padding:12px;font:inherit;outline:none"></textarea>
+<textarea id="feedback" rows="3" placeholder="Nhập đánh giá của bạn..." style="width:100%;resize:vertical;background:#090610;color:white;border:1px solid #603486;border-radius:10px;padding:12px;font:inherit;outline:none"></textarea>
 <div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="action" id="evaluate">GỬI ĐÁNH GIÁ</button></div>
 <p class="hint" id="feedbackHint" aria-live="polite">Chưa có đánh giá mới.</p>
 </section>
@@ -50,14 +50,14 @@
 <button class="action" id="save">▣ LƯU CẤU HÌNH</button><button class="action" id="report">⌁ KIỂM TRA</button>
 </div></section>
 <section class="card"><h2>◈ SYSTEM CONSOLE</h2><div class="log" id="log"><div>Interface initialized successfully</div><div>All optional modules are OFF</div><div>Enter a device name to get a suggested preset</div></div></section>
-<section class="card wide"><h2>◈ LƯU Ý</h2><p class="hint">Đây là bộ gợi ý tham khảo trong giao diện HTML, không phải phép đo hay cấu hình được kiểm chứng cho từng máy. Cảm giác thực tế còn phụ thuộc phiên bản game, FPS, kích thước màn hình và thói quen kéo tâm. Trang web không thể tự thay đổi cài đặt Free Fire hoặc bật tính năng can thiệp game.</p></section>
+<section class="card wide"><h2>◈ LƯU Ý</h2><p class="hint">Đây là bộ gợi ý tham khảo trong giao diện HTML, không phải phép đo hay cấu hình được kiểm chứng cho từng máy. Cảm giác thực tế còn phụ thuộc phiên bản game, FPS, kích thước màn hình và thói quen kéo tâm. Console có hiệu ứng chạy liên tục để mô phỏng trạng thái module trong trang; HTML không thể tự thay đổi cài đặt Free Fire hay tác động vào game.</p></section>
 </div><footer class="footer"><span>© SENSITIVITY LOCK · DEMO UI</span><span>LOCAL HTML · NO GAME MODIFICATION</span></footer></main><div class="toast" id="toast"></div><div class="modal-backdrop" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><h3 id="modalTitle">Tinh chỉnh lại sao cho hợp máy?</h3><p id="modalMessage">Hệ thống sẽ điều chỉnh độ nhạy dựa trên đánh giá của bạn.</p><div class="modal-actions"><button class="action" id="cancelTune" style="background:#352541">✕</button><button class="action" id="confirmTune">OK</button></div></div></div>
 <script>
 const $=s=>document.querySelector(s), log=$('#log'), toast=$('#toast');
 const defaults={general:155,red:150,scope:148,sniper:140,aim:158};
 function note(t){const d=document.createElement('div');d.textContent=new Date().toLocaleTimeString()+' · '+t;log.prepend(d)}
 function pop(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
-function setValues(v){Object.entries(v).forEach(([id,n])=>{$('#'+id).value=n;$('#'+id+'Out').value=n})}
+function setValues(v){Object.entries(v).forEach(([id,n])=>{$('#'+id).value=n;$('#'+id+'Out').value=n;const row=$('#'+id).closest('.range');row.classList.remove('sweep');void row.offsetWidth;row.classList.add('sweep')})}
 // Sliders are intentionally locked: only the recommendation algorithm changes them.
 const clamp=(v)=>Math.max(130,Math.min(180,Math.round(v)));
 let pendingPreset=null;
@@ -95,7 +95,20 @@ $('#confirmTune').onclick=()=>{
 };
 $('#confirmModal').addEventListener('click',e=>{if(e.target.id==='confirmModal'){$('#cancelTune').click()}});
 
-document.querySelectorAll('.switch').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('on');b.setAttribute('aria-pressed',b.classList.contains('on')?'true':'false');note(b.parentElement.childNodes[0].textContent.trim()+(b.classList.contains('on')?' enabled':' disabled'))}));
+const moduleLoops=new Map();
+document.querySelectorAll('.switch').forEach(b=>b.addEventListener('click',()=>{
+ const name=b.parentElement.childNodes[0].textContent.trim();
+ b.classList.toggle('on');const enabled=b.classList.contains('on');
+ b.setAttribute('aria-pressed',enabled?'true':'false');
+ if(enabled){
+   note(name+' enabled · interface simulation started');
+   const timer=setInterval(()=>{if(b.classList.contains('on'))note(name+' · demo process running');},1800);
+   moduleLoops.set(b,timer);
+ }else{
+   clearInterval(moduleLoops.get(b));moduleLoops.delete(b);
+   note(name+' disabled · demo process stopped');
+ }
+}));
 // Stable, conservative starter presets for common device families; unknown names use a neutral fallback.
 function makePreset(name){
  const n=name.toLowerCase();
@@ -111,7 +124,7 @@ function makePreset(name){
 $('#suggest').onclick=()=>{const name=$('#deviceName').value.trim();if(!name){pop('Hãy nhập tên thiết bị trước');$('#deviceName').focus();return}const p=makePreset(name);setValues(p);$('#deviceStat').textContent=name.length>13?name.slice(0,12)+'…':name;$('#statusStat').textContent='SUGGESTED';$('#suggestHint').textContent='Đã tạo bộ gợi ý tham khảo cho '+name+'. Hãy thử trong phòng tập và tinh chỉnh theo cảm giác kéo tâm.';note('Suggested sensitivity preset for '+name);pop('Đã đề xuất độ nhạy cho '+name)};
 $('#deviceName').addEventListener('keydown',e=>{if(e.key==='Enter')$('#suggest').click()});
 $('#apply').onclick=()=>{$('#statusStat').textContent='ACTIVE';note('Profile applied to this demo interface only');pop('Đã áp dụng trong giao diện demo')};
-$('#reset').onclick=()=>{setValues(defaults);document.querySelectorAll('.switch').forEach(b=>{b.classList.remove('on');b.setAttribute('aria-pressed','false')});$('#statusStat').textContent='READY';note('Default values restored; all modules OFF');pop('Đã đặt lại · mọi module đang tắt')};
+$('#reset').onclick=()=>{setValues(defaults);document.querySelectorAll('.switch').forEach(b=>{clearInterval(moduleLoops.get(b));moduleLoops.delete(b);b.classList.remove('on');b.setAttribute('aria-pressed','false')});$('#statusStat').textContent='READY';note('Default values restored; all modules OFF');pop('Đã đặt lại · mọi module đang tắt')};
 $('#save').onclick=()=>{const data={device:$('#deviceName').value.trim(),values:Object.fromEntries([...document.querySelectorAll('input[type=range]')].map(x=>[x.id,+x.value])),modules:[...document.querySelectorAll('.module')].map(x=>({name:x.childNodes[0].textContent.trim(),enabled:x.querySelector('.switch').classList.contains('on')}))};const a=document.createElement('a'),u=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.href=u;a.download='sensitivity-profile-demo.json';a.click();URL.revokeObjectURL(u);note('Configuration exported');pop('Đã xuất file JSON')};
 $('#report').onclick=()=>{note('Interface check completed · all values in 130–180');pop('Giao diện hoạt động bình thường')};
 </script></body></html>
