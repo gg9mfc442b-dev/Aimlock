@@ -12,7 +12,7 @@
 .hero{border:1px solid #7136a2;background:linear-gradient(135deg,#0d0716,#050309 76%);border-radius:18px;padding:20px;box-shadow:0 0 20px #6b21a820;position:relative;overflow:hidden}.hero:after{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--spin,0deg),transparent 0 38%,#7e22ce 48%,#c084fc 55%,#f5d0fe 60%,#e879f9 64%,#9333ea 70%,transparent 82%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;animation:frameSpin 2.6s linear infinite;filter:drop-shadow(0 0 7px #a855f7cc) drop-shadow(0 0 13px #7e22ce88)}.eyebrow{font-size:10px;color:#d9a8ff;letter-spacing:2px;font-weight:800}.hero h1{font-size:clamp(25px,5vw,40px);margin:6px 0 3px;line-height:1.05}.hero p{color:#c4b1d7;margin:8px 0 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.stat{background:#050309;border:1px solid #321b4b;border-radius:12px;padding:12px}.stat small{display:block;color:var(--muted);font-size:10px}.stat b{font-size:19px;color:#e8c8ff}
 .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:13px;margin-top:14px}.card{position:relative;isolation:isolate;background:linear-gradient(160deg,#0b0711,#040308);border:1px solid #3b2255;border-radius:15px;padding:15px;box-shadow:0 10px 28px #0005;overflow:hidden}.card:before{content:'';position:absolute;inset:-2px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--spin,0deg),transparent 0 38%,#7e22ce 48%,#c084fc 55%,#f5d0fe 60%,#e879f9 64%,#9333ea 70%,transparent 82%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:4;animation:frameSpin 4.2s linear infinite;pointer-events:none;filter:drop-shadow(0 0 4px #a855f766)}@property --spin{syntax:'<angle>';inherits:false;initial-value:0deg}@keyframes frameSpin{to{--spin:360deg}}.card h2{font-size:13px;letter-spacing:1px;margin:0 0 13px;color:#e8c8ff}
 .device-row{display:flex;gap:9px;margin-top:13px}.device-row input{min-width:0;flex:1;background:#090610;color:white;border:1px solid #603486;border-radius:10px;padding:12px;font-size:14px;outline:none}.device-row button,.action{border:1px solid #603486;border-radius:10px;background:linear-gradient(135deg,#7e22ce,#4c1d75);color:white;padding:12px 14px;font-weight:800;cursor:pointer}.hint{font-size:11px;color:var(--muted);line-height:1.5;margin:9px 0 0}
-.range{margin:15px 0;position:relative}.range input{transform:none;transform-origin:center}.range.sweep input{animation:rangeSweep 1.5s ease-out both}@keyframes rangeSweep{0%{filter:brightness(2);opacity:.35}100%{filter:brightness(1);opacity:.9}}.range-head{display:flex;justify-content:space-between;color:#d8c9e8;font-size:12px;margin-bottom:8px}.range output{color:#c084fc;font-weight:800}input[type=range]{width:100%;height:22px;margin:0;appearance:none;-webkit-appearance:none;pointer-events:none;opacity:1;direction:ltr;background:transparent;filter:none!important}
+.range{margin:15px 0;position:relative}.range input{transform:none;transform-origin:center}.range.sweep input{animation:rangeSweep 1.5s ease-out both}@keyframes rangeSweep{0%{filter:brightness(2);opacity:.35}100%{filter:brightness(1);opacity:.9}}.range-head{display:flex;justify-content:space-between;color:#d8c9e8;font-size:12px;margin-bottom:8px}.range output{color:#c084fc;font-weight:800}input[type=range]{width:100%;height:22px;margin:0;appearance:none;-webkit-appearance:none;pointer-events:none;touch-action:none;user-select:none;-webkit-user-select:none;opacity:1;direction:ltr;background:transparent;filter:none!important}
 input[type=range]::-webkit-slider-runnable-track{height:7px;border-radius:99px;background:linear-gradient(90deg,#7e22ce 0%,#a855f7 48%,#e9d5ff var(--fill,50%),#30213f var(--fill,50%),#30213f 100%);box-shadow:0 0 9px #a855f755,inset 0 1px 2px #0009}
 input[type=range]::-moz-range-track{height:7px;border-radius:99px;background:#30213f;box-shadow:inset 0 1px 2px #0009}
 input[type=range]::-moz-range-progress{height:7px;border-radius:99px;background:linear-gradient(90deg,#7e22ce,#c084fc,#e9d5ff);box-shadow:0 0 9px #a855f755}
@@ -138,7 +138,7 @@ button,input,textarea{font-size:16px;touch-action:manipulation;-webkit-tap-highl
 <p class="hint" id="suggestHint">Mặc định cả 6 mục đều là 100. Có thể yêu cầu đề xuất riêng bằng tên thiết bị hoặc đánh giá cảm giác chơi.</p>
 <div class="stats"><div class="stat"><small>PROFILE</small><b>GAMING</b></div><div class="stat"><small>DEVICE</small><b id="deviceStat">CHƯA CHỌN</b></div><div class="stat"><small>STATUS</small><b id="statusStat">READY</b></div></div></section>
 <div class="grid">
-<section class="card"><h2>◈ ĐỘ NHẠY</h2>
+<section class="card"><h2>◈ ĐỘ NHẠY <span style="color:#c084fc;font-size:11px">🔒 ĐÃ KHÓA</span></h2>
 <div class="range"><div class="range-head"><label for="general">Nhìn xung quanh</label><output id="generalOut">100</output></div><input id="general" type="range" min="0" max="200" value="100" disabled></div>
 <div class="range"><div class="range-head"><label for="red">Ống ngắm hồng tâm</label><output id="redOut">100</output></div><input id="red" type="range" min="0" max="200" value="100" disabled></div>
 <div class="range"><div class="range-head"><label for="scope">Ống ngắm 2x</label><output id="scopeOut">100</output></div><input id="scope" type="range" min="0" max="200" value="100" disabled></div>
@@ -210,8 +210,18 @@ function startConsole(){if(consoleTimer===null) consoleTimer=setInterval(()=>{if
 function stopConsole(){if(consoleTimer!==null){clearInterval(consoleTimer);consoleTimer=null;}}
 document.addEventListener('visibilitychange',()=>{if(document.hidden) stopConsole(); else startConsole();});
 startConsole();
+function lockSensitivitySliders(){
+ lockSensitivitySliders();
+document.querySelectorAll('input[type="range"]').forEach(slider=>{
+  slider.disabled=true;
+  slider.setAttribute('aria-disabled','true');
+  slider.tabIndex=-1;
+ });
+}
+lockSensitivitySliders();
 let sensitivityFrame=0;
 function setValues(v){
+ lockSensitivitySliders();
  if(sensitivityFrame) cancelAnimationFrame(sensitivityFrame);
  const tracks=Object.entries(v).map(([id,target])=>{
   const slider=$('#'+id), output=$('#'+id+'Out'), row=slider.closest('.range');
@@ -250,11 +260,11 @@ function tuneFromFeedback(raw){
  const overshoot=/lố đầu|quá đầu|văng đầu|bay đầu|quá nhạy|lố tâm/.test(f);
  const head=/bám đầu|nhẹ tâm|kéo đầu|dính đầu/.test(f);
  if(heavy){
-   next.general+=5; next.red+=5; next.scope+=4; next.sniper4+=3; next.sniper+=2; next.freeLook+=3;
+   next.general+=4; next.red+=4; next.scope+=3; next.sniper4+=2; next.sniper+=1; next.freeLook+=2;
  }else if(overshoot){
-   next.general-=5; next.red-=6; next.scope-=5; next.sniper4-=4; next.sniper-=3; next.freeLook-=3;
+   next.general-=4; next.red-=5; next.scope-=4; next.sniper4-=3; next.sniper-=2; next.freeLook-=2;
  }else if(head){
-   next.general+=3; next.red+=4; next.scope+=3; next.sniper4+=2; next.sniper+=2; next.freeLook+=2;
+   next.general+=2; next.red+=3; next.scope+=2; next.sniper4+=1; next.sniper+=1; next.freeLook+=1;
  }else{
    next.general+=1; next.red+=1; next.scope+=1; next.sniper4+=1; next.sniper+=1; next.freeLook+=1;
  }
@@ -282,13 +292,34 @@ document.querySelectorAll('.switch').forEach(b=>b.addEventListener('click',()=>{
  b.setAttribute('aria-pressed',enabled?'true':'false');
  burst(name+(enabled?' ENABLED':' DISABLED'));
 }));
-// Stable, conservative starter presets for common device families; unknown names use a neutral fallback.
+// Practical starter presets by iPhone generation. These are in-game suggestions only;
+// they cannot read device touch hardware or guarantee headshots/recoil control.
 function makePreset(name){
- // Neutral baseline: device name is recorded, but it does not invent sensitivity values.
- return {general:100,red:100,scope:100,sniper4:100,sniper:100,freeLook:100};
+ const n=name.toLowerCase().replace(/\s+/g,' ');
+ let p;
+ if(/iphone\s*(xs|x|11)(\s|$)/.test(n)) p={general:166,red:162,scope:156,sniper4:148,sniper:92,freeLook:140};
+ else if(/iphone\s*12/.test(n)) p={general:164,red:160,scope:154,sniper4:147,sniper:92,freeLook:140};
+ else if(/iphone\s*13/.test(n)) p={general:161,red:157,scope:152,sniper4:146,sniper:90,freeLook:138};
+ else if(/iphone\s*14/.test(n)) p={general:158,red:154,scope:150,sniper4:144,sniper:90,freeLook:136};
+ else if(/iphone\s*15/.test(n)) p={general:156,red:152,scope:148,sniper4:142,sniper:88,freeLook:134};
+ else if(/iphone\s*(16|17)/.test(n)) p={general:154,red:150,scope:146,sniper4:140,sniper:88,freeLook:132};
+ else p={general:160,red:156,scope:151,sniper4:144,sniper:90,freeLook:138};
+ return p;
 }
-$('#suggest').onclick=()=>{const name=$('#deviceName').value.trim();if(!name){pop('Hãy nhập tên thiết bị trước');$('#deviceName').focus();return}const p=makePreset(name);setValues(p);$('#deviceStat').textContent=name.length>13?name.slice(0,12)+'…':name;$('#statusStat').textContent='SUGGESTED';$('#suggestHint').textContent='Thiết bị đã chọn: '+name+'. Giữ nguyên mức mặc định 100 cho cả 6 mục; chỉ thay đổi khi gửi đánh giá và xác nhận.';burst('SENSITIVITY PRESET GENERATED · '+name);pop('Đã đề xuất độ nhạy cho '+name)};
-$('#deviceName').addEventListener('keydown',e=>{if(e.key==='Enter')$('#suggest').click()});
+function applyDevicePreset(showToast=true){
+ const name=$('#deviceName').value.trim();
+ if(!name){if(showToast){pop('Hãy nhập tên iPhone trước');$('#deviceName').focus()}return}
+ const p=makePreset(name);
+ setValues(p);
+ $('#deviceStat').textContent=name.length>13?name.slice(0,12)+'…':name;
+ $('#statusStat').textContent='SUGGESTED · LOCKED';
+ $('#suggestHint').textContent='Đã hiện bộ độ nhạy tham khảo cho '+name+'. Các thanh đã khóa, không thể kéo tay. Thử trong phòng tập; nếu bị lố đầu hãy gửi đánh giá “lố đầu”, nếu nặng hãy gửi “nặng tâm”.';
+ burst('IPHONE SENSITIVITY PRESET · '+name);
+ if(showToast)pop('Đã đề xuất và khóa độ nhạy');
+}
+$('#suggest').onclick=()=>applyDevicePreset(true);
+$('#deviceName').addEventListener('change',()=>applyDevicePreset(false));
+$('#deviceName').addEventListener('keydown',e=>{if(e.key==='Enter')applyDevicePreset(true)});
 let launchTimer=null;
 function beginLaunch(){
  if(launchTimer!==null)return;
