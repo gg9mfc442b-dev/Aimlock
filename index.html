@@ -211,8 +211,9 @@ function stopConsole(){if(consoleTimer!==null){clearInterval(consoleTimer);conso
 document.addEventListener('visibilitychange',()=>{if(document.hidden) stopConsole(); else startConsole();});
 startConsole();
 function lockSensitivitySliders(){
- lockSensitivitySliders();
-document.querySelectorAll('input[type="range"]').forEach(slider=>{
+ ['general','red','scope','sniper4','sniper','freeLook'].forEach(id=>{
+  const slider=document.getElementById(id);
+  if(!slider)return;
   slider.disabled=true;
   slider.setAttribute('aria-disabled','true');
   slider.tabIndex=-1;
