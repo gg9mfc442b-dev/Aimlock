@@ -12,7 +12,7 @@
 .hero{border:1px solid #7136a2;background:linear-gradient(135deg,#0d0716,#050309 76%);border-radius:18px;padding:20px;box-shadow:0 0 20px #6b21a820;position:relative;overflow:hidden}.hero:after{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--spin,0deg),transparent 0 38%,#7e22ce 48%,#c084fc 55%,#f5d0fe 60%,#e879f9 64%,#9333ea 70%,transparent 82%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;animation:frameSpin 2.6s linear infinite;filter:drop-shadow(0 0 7px #a855f7cc) drop-shadow(0 0 13px #7e22ce88)}.eyebrow{font-size:10px;color:#d9a8ff;letter-spacing:2px;font-weight:800}.hero h1{font-size:clamp(25px,5vw,40px);margin:6px 0 3px;line-height:1.05}.hero p{color:#c4b1d7;margin:8px 0 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.stat{background:#050309;border:1px solid #321b4b;border-radius:12px;padding:12px}.stat small{display:block;color:var(--muted);font-size:10px}.stat b{font-size:19px;color:#e8c8ff}
 .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:13px;margin-top:14px}.card{position:relative;isolation:isolate;background:linear-gradient(160deg,#0b0711,#040308);border:1px solid #3b2255;border-radius:15px;padding:15px;box-shadow:0 10px 28px #0005;overflow:hidden}.card:before{content:'';position:absolute;inset:-2px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--spin,0deg),transparent 0 38%,#7e22ce 48%,#c084fc 55%,#f5d0fe 60%,#e879f9 64%,#9333ea 70%,transparent 82%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:4;animation:frameSpin 4.2s linear infinite;pointer-events:none;filter:drop-shadow(0 0 4px #a855f766)}@property --spin{syntax:'<angle>';inherits:false;initial-value:0deg}@keyframes frameSpin{to{--spin:360deg}}.card h2{font-size:13px;letter-spacing:1px;margin:0 0 13px;color:#e8c8ff}
 .device-row{display:flex;gap:9px;margin-top:13px}.device-row input{min-width:0;flex:1;background:#090610;color:white;border:1px solid #603486;border-radius:10px;padding:12px;font-size:14px;outline:none}.device-row button,.action{border:1px solid #603486;border-radius:10px;background:linear-gradient(135deg,#7e22ce,#4c1d75);color:white;padding:12px 14px;font-weight:800;cursor:pointer}.hint{font-size:11px;color:var(--muted);line-height:1.5;margin:9px 0 0}
-.range{margin:15px 0;position:relative}.range input{transform:none;transform-origin:center}.range.sweep input{animation:rangeSweep 1.5s ease-out both}@keyframes rangeSweep{0%{filter:brightness(2);opacity:.35}100%{filter:brightness(1);opacity:.9}}.range-head{display:flex;justify-content:space-between;color:#d8c9e8;font-size:12px;margin-bottom:8px}.range output{color:#f0abfc;font-weight:800}input[type=range]{width:100%;accent-color:#d08cff;pointer-events:none;opacity:.95;direction:ltr;filter:saturate(1.15)}input[type=range]:disabled{filter:saturate(.85)}
+.range{margin:15px 0;position:relative}.range input{transform:none;transform-origin:center}.range.sweep input{animation:rangeSweep 1.5s ease-out both}@keyframes rangeSweep{0%{filter:brightness(2);opacity:.35}100%{filter:brightness(1);opacity:.9}}.range-head{display:flex;justify-content:space-between;color:#d8c9e8;font-size:12px;margin-bottom:8px}.range output{color:#c084fc;font-weight:800}input[type=range]{width:100%;accent-color:#a855f7;pointer-events:none;opacity:.95;direction:ltr;filter:saturate(1.15)}input[type=range]:disabled{filter:saturate(.85)}
 .modules{display:grid;grid-template-columns:1fr 1fr;gap:9px}.module{display:flex;align-items:center;justify-content:space-between;background:#120a1d;border:1px solid #3b2255;padding:11px;border-radius:10px;font-size:12px;font-weight:700}.switch{width:42px;height:24px;border-radius:20px;background:#51445e;position:relative;border:0;cursor:pointer;flex:none;transition:.2s}.switch:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:white;left:3px;top:3px;transition:.2s}.switch.on{background:#9333ea}.switch.on:after{left:21px}
 .actions{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.actions .action{min-height:54px;white-space:normal;line-height:1.25}.action{background:#170e27}.signal-meter{height:24px;display:flex;align-items:center;gap:4px;margin:0 0 9px;padding:0 4px}.signal-meter span{display:block;width:4px;height:100%;border-radius:5px;background:linear-gradient(to top,#7e22ce,#f0abfc);transform:scaleY(.25);transform-origin:center;animation:barDance .75s ease-in-out infinite}.signal-meter span:nth-child(2n){animation-delay:.17s}.signal-meter span:nth-child(3n){animation-delay:.31s}.signal-meter span:nth-child(4n){animation-delay:.46s}.log{height:142px;overflow:auto;background:#080611;border:1px solid #43245f;border-radius:10px;padding:10px;color:#b7f7d0;font:11px ui-monospace,monospace;line-height:1.7}.log div:before{content:"› ";color:#d879ff}.wide{grid-column:1/-1}.footer{display:flex;justify-content:space-between;gap:10px;align-items:center;color:#8f80a2;font-size:10px;margin-top:14px}.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;background:#27113e;border:1px solid #a855f7;padding:10px 16px;border-radius:30px;transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}.modal-backdrop{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal-backdrop.show{display:flex}.modal{width:min(100%,380px);background:linear-gradient(150deg,#291342,#10091c);border:1px solid #a855f7;border-radius:17px;padding:20px;box-shadow:0 18px 60px #0009}.modal h3{margin:0 0 9px;color:#f0d5ff;font-size:19px}.modal p{color:#c7b5d8;line-height:1.5;margin:0 0 18px}.modal-actions{display:flex;justify-content:flex-end;gap:10px}.modal-actions button{min-width:76px}
 @media(max-width:680px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.stats{gap:7px}.stat{padding:9px}.modules{grid-template-columns:1fr 1fr}.footer{flex-direction:column;align-items:flex-start}.device-row{flex-direction:column}}
@@ -90,6 +90,14 @@ body:after{display:none!important;animation:none!important}
 button,input,textarea{font-size:16px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 
+
+.apply-card .actions{display:block}.apply-card .action{width:100%;min-height:58px;font-size:16px;letter-spacing:.5px}
+.antiband-hint strong{color:#c084fc;letter-spacing:1.5px}
+.code-stream{height:150px;overflow:auto;margin-top:14px;padding:11px;border:1px solid #482765;border-radius:10px;background:#050309;font:11px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;box-shadow:inset 0 0 18px #7e22ce18}
+.code-line{white-space:pre-wrap;overflow-wrap:anywhere}.code-line.green{color:#79f2b0;text-shadow:0 0 7px #22c55e44}.code-line.red{color:#ff687d;text-shadow:0 0 7px #ef444444}
+.code-line.dim{color:#a99bbd}
+.launch-list{max-height:170px;overflow:auto}
+
 /* Launch progress overlay: lightweight CSS, no backdrop blur or large filters. */
 .launch-backdrop{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.88)}
 .launch-backdrop.show{display:flex}
@@ -98,7 +106,7 @@ button,input,textarea{font-size:16px;touch-action:manipulation;-webkit-tap-highl
 .launch-panel h2{font-size:22px;margin:8px 0;color:#f5eaff}
 .launch-sub,.launch-foot{color:#b9a8ca;font-size:13px;line-height:1.5}
 .progress-head{display:flex;justify-content:space-between;gap:10px;margin:18px 0 8px;font-size:10px;letter-spacing:1px;color:#d7c2eb}
-.progress-head strong{color:#f0abfc;font-size:14px}
+.progress-head strong{color:#c084fc;font-size:14px}
 .progress-track{height:11px;border-radius:20px;background:#24152f;border:1px solid #59317a;overflow:hidden}
 .progress-track>div{height:100%;width:1%;border-radius:inherit;background:linear-gradient(90deg,#7e22ce,#c084fc,#f5d0fe);box-shadow:0 0 10px #c084fc;transition:width .12s linear}
 .launch-list{display:grid;gap:7px;margin-top:16px}
@@ -146,13 +154,11 @@ button,input,textarea{font-size:16px;touch-action:manipulation;-webkit-tap-highl
 <div class="module">LOCKHEAD <button class="switch" type="button" aria-label="Bật tắt Lockhead" aria-pressed="false"></button></div>
 <div class="module">AI OPTIMAL <button class="switch" type="button" aria-label="Bật tắt AI optimal" aria-pressed="false"></button></div>
 <div class="module boost-module">BOOST RAM 🚀 <button title="Chỉ mô phỏng trạng thái trong giao diện; không giải phóng RAM hệ thống" class="switch" type="button" aria-label="Bật tắt Boost RAM (mô phỏng giao diện)" aria-pressed="false"></button></div>
-</div><p class="hint">Các công tắc mặc định đều TẮT. Nhấn vào từng công tắc để bật hoặc tắt trong giao diện.</p></section>
-<section class="card"><h2>◈ THAO TÁC NHANH</h2><div class="actions">
-<button class="action" id="apply">✦ ÁP DỤNG PROFILE</button><button class="action" id="reset">↻ ĐẶT LẠI</button>
-<button class="action" id="save">▣ LƯU CẤU HÌNH</button><button class="action" id="report">⌁ KIỂM TRA</button>
+</div><p class="hint antiband-hint"><strong>ANTIBAND</strong> · Các công tắc chỉ bật/tắt trạng thái mô phỏng trong giao diện.</p></section>
+<section class="card apply-card"><h2>◈ THAO TÁC</h2><div class="actions">
+<button class="action" id="apply">✦ ÁP DỤNG FILE</button>
 </div></section>
-<section class="card"><h2>◈ SYSTEM CONSOLE</h2><div class="signal-meter" aria-label="Animated interface signal"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="log" id="log"><div>Interface initialized successfully</div><div>All optional modules are OFF</div><div>Enter a device name to get a suggested preset</div></div></section>
-</div><footer class="footer"><span>© 𝑨𝒗𝒆𝒓𝒕𝒆𝒙 𝟐.𝟎 · DEMO UI</span><span>LOCAL HTML · NO GAME MODIFICATION</span></footer></main>
+</div></main>
 <div class="launch-backdrop" id="launchOverlay" role="dialog" aria-modal="true" aria-labelledby="launchTitle" aria-hidden="true">
  <section class="launch-panel">
   <div class="launch-kicker">AVERTEX 2.0 · LOCAL DEMO</div>
@@ -160,6 +166,7 @@ button,input,textarea{font-size:16px;touch-action:manipulation;-webkit-tap-highl
   <p class="launch-sub" id="launchStatus">Đang chuẩn bị các module…</p>
   <div class="progress-head"><span>TIẾN TRÌNH KHỞI CHẠY</span><strong id="launchPercent">1%</strong></div>
   <div class="progress-track"><div id="launchBar"></div></div>
+  <div class="code-stream" id="codeStream" aria-live="polite"><div class="code-line green">// AVERTEX LOCAL UI SIMULATION</div><div class="code-line red">// NO GAME PROCESS / NO GAME MEMORY ACCESS</div></div>
   <div class="launch-list" id="launchList"></div>
   <p class="launch-foot" id="launchFoot">Vui lòng giữ trang mở trong lúc mô phỏng khởi chạy.</p>
   <button class="action launch-close" id="launchClose" type="button" disabled>HOÀN TẤT</button>
@@ -167,29 +174,28 @@ button,input,textarea{font-size:16px;touch-action:manipulation;-webkit-tap-highl
 </div>
 <div class="toast" id="toast"></div><div class="modal-backdrop" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><h3 id="modalTitle">Tinh chỉnh lại sao cho hợp máy?</h3><p id="modalMessage">Hệ thống sẽ điều chỉnh độ nhạy dựa trên đánh giá của bạn.</p><div class="modal-actions"><button class="action" id="cancelTune" style="background:#352541">✕</button><button class="action" id="confirmTune">OK</button></div></div></div>
 <script>
-const $=s=>document.querySelector(s), log=$('#log'), toast=$('#toast');
+const $=s=>document.querySelector(s), toast=$('#toast');
 const defaults={general:155,red:150,scope:148,sniper:140,aim:158};
 const hex=()=>Math.floor(Math.random()*0xffffff).toString(16).toUpperCase().padStart(6,'0');
 const consoleLines=[
- 'CORE/INPUT  · touch matrix synchronized','PROFILE/SCAN · local preset table verified',
- 'SENS/ENGINE  · response curve recalculated','DISPLAY/IO   · frame pacing check complete',
- 'AIM/MODULE   · interface state refreshed','CACHE/LAYER  · temporary buffer cleared',
- 'DEVICE/INFO  · device profile loaded','SIGNAL/TRACE · latency sample recorded',
- 'UI/RENDER    · neon compositor active','CONFIG/SAFE  · local settings validated',
- 'SYSTEM/PULSE · diagnostic cycle complete','MEMORY/POOL  · interface cache stable',
- 'CONTROL/BUS  · switch state broadcast','SENS/MAP     · five channels in range',
- 'VISUAL/FX    · border animation synchronized','PROFILE/IO   · demo profile staged'
+ 'INPUT/PROFILE · local settings parsed',
+ 'SENSITIVITY/UI · violet range display refreshed',
+ 'ANTIBAND/DEMO · switch state checked',
+ 'RENDER/FX · interface animation synchronized',
+ 'MODULE/STATE · selected demo module staged',
+ 'CHECKSUM/UI · local visual state verified',
+ 'KEY/STREAM · 0x'+hex()+' · DEMO TOKEN',
+ 'STATUS/SAFE · no game process connected'
 ];
-function note(t){
- const d=document.createElement('div');
- d.textContent=new Date().toLocaleTimeString()+' · '+t;
- log.prepend(d);
- while(log.children.length>16) log.lastElementChild.remove();
+let streamTimer=null;
+function addCodeLine(kind,text){
+ const box=$('#codeStream'); if(!box)return;
+ const d=document.createElement('div'); d.className='code-line '+kind;
+ d.textContent=(kind==='green'?'[OK] ':'[TRACE] ')+new Date().toLocaleTimeString()+'  '+text;
+ box.appendChild(d); while(box.children.length>32)box.firstElementChild.remove(); box.scrollTop=box.scrollHeight;
 }
-function burst(label){
- note('> '+label+' · request accepted');
- for(let i=0;i<3;i++) note('0x'+hex()+' · '+consoleLines[(Math.random()*consoleLines.length)|0]);
-}
+function note(t){addCodeLine('green',t);}
+function burst(label){addCodeLine('red',label+' · UI DEMO');}
 function pop(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
 // Lightweight diagnostic simulation; pause while Safari is backgrounded.
 let consoleTimer=null;
@@ -281,37 +287,51 @@ $('#deviceName').addEventListener('keydown',e=>{if(e.key==='Enter')$('#suggest')
 let launchTimer=null;
 function beginLaunch(){
  if(launchTimer!==null)return;
+ const all=[...document.querySelectorAll('.module')].map(el=>({name:el.childNodes[0].textContent.trim(),enabled:el.querySelector('.switch').classList.contains('on')}));
+ const modules=all.filter(m=>m.enabled);
+ if(modules.length===0){
+  $('#statusStat').textContent='FAILED';
+  pop('KÍCH HOẠT THẤT BẠI · Hãy bật ít nhất một công tắc');
+  addCodeLine('red','ACTIVATION FAILED · NO MODULE SELECTED');
+  addCodeLine('red','ENABLE A MODULE BEFORE APPLYING · DEMO ONLY');
+  return;
+ }
  const overlay=$('#launchOverlay'),list=$('#launchList'),bar=$('#launchBar'),pct=$('#launchPercent'),status=$('#launchStatus'),close=$('#launchClose');
- const modules=[...document.querySelectorAll('.module')].map(el=>({name:el.childNodes[0].textContent.trim(),enabled:el.querySelector('.switch').classList.contains('on')}));
- list.innerHTML='';
- modules.forEach((m,i)=>{const row=document.createElement('div');row.className='launch-item';row.dataset.index=String(i);row.innerHTML='<span class="launch-spinner" aria-hidden="true"></span><strong></strong><span class="launch-state">Đang chờ</span>';row.querySelector('strong').textContent=m.name;list.appendChild(row);});
- overlay.classList.add('show');overlay.setAttribute('aria-hidden','false');close.disabled=true;close.textContent='ĐANG KHỞI CHẠY…';
- bar.style.width='1%';pct.textContent='1%';status.textContent='Đang áp dụng trick · khởi tạo giao diện…';
- $('#statusStat').textContent='STARTING';
- const total=modules.length, duration= Math.max(3200,total*620), started=Date.now();
- let lastStep=-1;
- function tick(){
-  const elapsed=Date.now()-started, progress=Math.min(100,Math.max(1,Math.round(elapsed/duration*100)));
+ list.innerHTML=''; $('#codeStream').innerHTML='';
+ addCodeLine('green','AVERTEX LOCAL UI SIMULATION STARTED');
+ addCodeLine('red','NO GAME PROCESS / NO GAME MEMORY ACCESS');
+ modules.forEach(m=>{const row=document.createElement('div');row.className='launch-item';row.innerHTML='<span class="launch-spinner" aria-hidden="true"></span><strong></strong><span class="launch-state">Đang xử lý demo</span>';row.querySelector('strong').textContent=m.name;list.appendChild(row);});
+ overlay.classList.add('show');overlay.setAttribute('aria-hidden','false');close.disabled=true;close.textContent='ĐANG CHẠY…';
+ bar.style.width='1%';pct.textContent='1%';status.textContent='Đang chạy hiệu ứng giao diện cho module đã bật…';
+ $('#statusStat').textContent='RUNNING';
+ const duration=Math.max(3600,modules.length*850),started=performance.now();let lastStep=-1;
+ const codeMessages=[
+  ['green','[OK] MODULE STATE READ'],['red','[TRACE] KEY=0x'+hex()+' · DEMO STREAM'],
+  ['green','[OK] LOCAL PROFILE CHECK'],['red','[TRACE] BUFFER=0x'+hex()+' · VISUAL ONLY'],
+  ['green','[OK] ANTIBAND UI FLAG UPDATED'],['red','[TRACE] GAME ACCESS=NONE']
+ ];
+ let codeIndex=0;
+ streamTimer=setInterval(()=>{const item=codeMessages[codeIndex%codeMessages.length];addCodeLine(item[0],item[1].replace(/0x[0-9A-F]+/g,'0x'+hex()));codeIndex++;},115);
+ function tick(now){
+  const progress=Math.min(100,Math.max(1,Math.round((now-started)/duration*100)));
   bar.style.width=progress+'%';pct.textContent=progress+'%';
-  const current=Math.min(total-1,Math.floor((progress/100)*total));
+  const current=Math.min(modules.length-1,Math.floor((progress/100)*modules.length));
   if(current!==lastStep){
-   if(lastStep>=0){const prev=list.children[lastStep],prevMod=modules[lastStep];prev.className='launch-item done';prev.innerHTML='<span class="launch-check">✓</span><strong></strong><span class="launch-state"></span>';prev.querySelector('strong').textContent=prevMod.name;prev.querySelector('.launch-state').textContent=prevMod.enabled?'SẴN SÀNG':'ĐÃ KIỂM TRA · OFF';}
-   const row=list.children[current];if(row){row.className='launch-item running';row.querySelector('.launch-state').textContent=modules[current].enabled?'Đang khởi chạy…':'Đang kiểm tra…';}
-   lastStep=current;status.textContent=modules[current].enabled?'Đang khởi chạy '+modules[current].name+'…':'Đang kiểm tra '+modules[current].name+'…';
+   if(lastStep>=0){const prev=list.children[lastStep];prev.className='launch-item done';prev.innerHTML='<span class="launch-check">✓</span><strong></strong><span class="launch-state">ĐÃ XỬ LÝ · DEMO</span>';prev.querySelector('strong').textContent=modules[lastStep].name;}
+   const row=list.children[current];if(row){row.className='launch-item running';row.querySelector('.launch-state').textContent='Đang chạy hiệu ứng…';}
+   lastStep=current;status.textContent='Đang mô phỏng module '+modules[current].name+'…';
   }
   if(progress<100){launchTimer=requestAnimationFrame(tick);}
   else{
-   modules.forEach((m,i)=>{const row=list.children[i];row.className='launch-item done';row.innerHTML='<span class="launch-check">✓</span><strong></strong><span class="launch-state"></span>';row.querySelector('strong').textContent=m.name;row.querySelector('.launch-state').textContent=m.enabled?'SẴN SÀNG':'ĐÃ KIỂM TRA · OFF';});
-   launchTimer=null;status.textContent='Hoàn tất khởi chạy giao diện Avertex 2.0.';$('#statusStat').textContent='READY';close.disabled=false;close.textContent='HOÀN TẤT';
-   note('LAUNCH SEQUENCE COMPLETE · UI DEMO ONLY');pop('Khởi chạy giao diện hoàn tất');
+   modules.forEach((m,i)=>{const row=list.children[i];row.className='launch-item done';row.innerHTML='<span class="launch-check">✓</span><strong></strong><span class="launch-state">HOÀN TẤT · DEMO</span>';row.querySelector('strong').textContent=m.name;});
+   if(streamTimer!==null){clearInterval(streamTimer);streamTimer=null;}
+   addCodeLine('green','[OK] UI SIMULATION COMPLETE');addCodeLine('red','[INFO] NO IN-GAME EFFECT WAS APPLIED');
+   launchTimer=null;status.textContent='Hoàn tất mô phỏng giao diện. Không có thay đổi trong game.';$('#statusStat').textContent='DEMO READY';close.disabled=false;close.textContent='HOÀN TẤT';
+   pop('Hoàn tất mô phỏng Avertex');
   }
  }
  launchTimer=requestAnimationFrame(tick);
- burst('LAUNCH SEQUENCE STARTED · UI DEMO');
 }
 $('#apply').onclick=beginLaunch;
-$('#launchClose').onclick=()=>{if(launchTimer!==null){cancelAnimationFrame(launchTimer);launchTimer=null;}$('#launchOverlay').classList.remove('show');$('#launchOverlay').setAttribute('aria-hidden','true');};
-$('#reset').onclick=()=>{if(launchTimer!==null){cancelAnimationFrame(launchTimer);launchTimer=null;}$('#launchOverlay').classList.remove('show');$('#launchOverlay').setAttribute('aria-hidden','true');setValues(defaults);document.querySelectorAll('.switch').forEach(b=>{b.classList.remove('on');b.setAttribute('aria-pressed','false')});$('#statusStat').textContent='READY';burst('RESET · DEFAULT PROFILE RESTORED');pop('Đã đặt lại · mọi module đang tắt')};
-$('#save').onclick=()=>{const data={device:$('#deviceName').value.trim(),values:Object.fromEntries([...document.querySelectorAll('input[type=range]')].map(x=>[x.id,+x.value])),modules:[...document.querySelectorAll('.module')].map(x=>({name:x.childNodes[0].textContent.trim(),enabled:x.querySelector('.switch').classList.contains('on')}))};const a=document.createElement('a'),u=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.href=u;a.download='sensitivity-profile-demo.json';a.click();URL.revokeObjectURL(u);burst('CONFIG EXPORT · JSON CREATED');pop('Đã xuất file JSON')};
-$('#report').onclick=()=>{burst('SYSTEM CHECK · ALL CONTROLS RESPONDING');pop('Giao diện hoạt động bình thường')};
+$('#launchClose').onclick=()=>{if(launchTimer!==null){cancelAnimationFrame(launchTimer);launchTimer=null;}if(streamTimer!==null){clearInterval(streamTimer);streamTimer=null;}$('#launchOverlay').classList.remove('show');$('#launchOverlay').setAttribute('aria-hidden','true');};
 </script></body></html>
